@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolarNova · Premium Solar About & Solutions</title>
+    <link rel="icon" type="image/jpeg" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f59e0b' rx='20'/%3E%3Ctext x='50' y='68' font-size='56' text-anchor='middle' fill='white' font-family='Arial'%3E☀%3C/text%3E%3C/svg%3E" />
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'system-ui', 'sans-serif'],
+                        display: ['"Poppins"', 'sans-serif'],
+                    },
+                    colors: {
+                        solar: {
+                            50: '#fff9e6',
+                            100: '#ffefc2',
+                            200: '#ffdf8a',
+                            300: '#fdc94f',
+                            400: '#f5b82e',
+                            500: '#f59e0b',
+                            600: '#d97d00',
+                            700: '#b85d00',
+                            800: '#934800',
+                            900: '#783a00',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================================ */
+        /* RESET, BASE, THEME VARIABLES, NAVBAR, FOOTER, MODALS         */
+        /* (EXACTLY COPIED FROM home-2.html TO MAINTAIN CONSISTENCY)    */
+        /* ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1a2a3a;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+            padding-top: 60px;
+        }
+
+        /* ===== THEME VARIABLES ===== */
+        :root {
+            --bg-color: #f8fafc;
+            --bg-secondary: #f0f4f8;
+            --bg-card: #ffffff;
+            --bg-inverted: #0a1a2a;
+            --text-main: #1a2a3a;
+            --text-muted: #4a5a6a;
+            --text-dim: #7a8a9a;
+            --accent-color: #f59e0b;
+            --accent-dark: #d97d00;
+            --accent-light: #fff9e6;
+            --border-color: #d0dce8;
+            --border-light: rgba(245, 158, 11, 0.15);
+            --nav-bg: rgba(255, 255, 255, 0.92);
+            --drawer-bg: rgba(255, 255, 255, 0.98);
+            --menu-hover-bg: rgba(245, 158, 11, 0.08);
+            --shadow-color: rgba(245, 158, 11, 0.08);
+            --success-color: #f59e0b;
+        }
+
+        body.dark-mode {
+            --bg-color: #0a1628;
+            --bg-secondary: #0f1f33;
+            --bg-card: #142a40;
+            --bg-inverted: #f0f4f8;
+            --text-main: #e8f0f8;
+            --text-muted: #a0b8d0;
+            --text-dim: #6a8aaa;
+            --accent-color: #f59e0b;
+            --accent-dark: #fdc94f;
+            --accent-light: #1a2a0a;
+            --border-color: #1a3a50;
+            --border-light: rgba(245, 158, 11, 0.2);
+            --nav-bg: rgba(10, 22, 40, 0.92);
+            --drawer-bg: rgba(10, 22, 40, 0.98);
+            --menu-hover-bg: rgba(245, 158, 11, 0.12);
+            --shadow-color: rgba(245, 158, 11, 0.08);
+            --success-color: #f59e0b;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, .brand-logo { font-family: 'Poppins', sans-serif; font-weight: 700 !important; letter-spacing: -0.01em; }
+        h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; font-weight: 600 !important; letter-spacing: -0.01em; }
+        p { font-weight: 400 !important; line-height: 1.7; }
+        b, strong, .font-bold { font-weight: 600 !important; }
+        .font-extrabold { font-weight: 700 !important; }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--nav-bg);
+            padding: 0 32px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            border-bottom: 1px solid transparent;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .navbar.scrolled {
+            height: 52px;
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: 0 4px 30px var(--shadow-color);
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 8px 16px;
+            margin: 0 2px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 50%; }
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-color);
+            background: var(--menu-hover-bg);
+        }
+
+        .dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 58px;
+            left: 0;
+            transform: translateY(8px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+        }
+        .navbar.scrolled .dropdown-menu { top: 52px; }
+        .dropdown-inner {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            min-width: 220px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            padding: 6px 0;
+            display: flex;
+            flex-direction: column;
+            border-radius: 8px;
+        }
+        body.light-mode .dropdown-inner { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 10px 22px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+            text-align: left;
+            white-space: nowrap;
+            border-radius: 0;
+        }
+        .dropdown-item:hover {
+            background: var(--menu-hover-bg);
+            color: var(--accent-color);
+            padding-left: 28px;
+        }
+        [dir="rtl"] .dropdown-item:hover { padding-left: 22px; padding-right: 28px; }
+
+        .btn {
+            padding: 10px 24px;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid transparent;
+            font-family: 'Inter', sans-serif;
+            border-radius: 8px;
+            gap: 8px;
+        }
+        .btn-solid { background: var(--accent-color); color: #FFFFFF !important; }
+        .btn-solid:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.35);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+        .btn-outline:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color) !important;
+            background: var(--menu-hover-bg);
+        }
+
+        .theme-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        .theme-btn:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #fff;
+            transform: rotate(20deg);
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.35s ease;
+            backdrop-filter: blur(4px);
+        }
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+
+        .fullscreen-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 380px;
+            height: 100dvh;
+            background: var(--drawer-bg);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(100%);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-left: 1px solid var(--border-light);
+        }
+        [dir="rtl"] .fullscreen-menu {
+            right: auto;
+            left: 0;
+            transform: translateX(-100%);
+            border-left: none;
+            border-right: 1px solid var(--border-light);
+        }
+        .fullscreen-menu.active { opacity: 1; visibility: visible; transform: translateX(0); }
+
+        .mobile-link {
+            display: block;
+            width: 100%;
+            padding: 16px 28px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: all 0.25s;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .mobile-link:hover {
+            color: var(--accent-color);
+            padding-left: 36px;
+            background: var(--menu-hover-bg);
+        }
+        [dir="rtl"] .mobile-link:hover { padding-left: 28px; padding-right: 36px; }
+
+        .mobile-menu-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+        }
+        .mobile-menu-btn:hover { color: var(--accent-color); background: var(--menu-hover-bg); }
+
+        .mobile-dropdown { border-bottom: 1px solid var(--border-light); }
+        .mobile-dropdown-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 28px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            user-select: none;
+        }
+        .mobile-dropdown-header:hover { color: var(--accent-color); background: var(--menu-hover-bg); }
+        .mobile-dropdown-header i {
+            transition: transform 0.3s ease;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+        .mobile-dropdown-header.open i { transform: rotate(180deg); }
+        .mobile-dropdown-items {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.3s ease;
+            padding-left: 16px;
+            background: var(--bg-secondary);
+        }
+        .mobile-dropdown-items.open {
+            max-height: 300px;
+            padding: 6px 0 10px 16px;
+        }
+        .mobile-dropdown-link {
+            border-bottom: none !important;
+            padding: 10px 28px !important;
+            font-size: 0.9rem !important;
+            font-family: 'Poppins', sans-serif !important;
+            font-weight: 500 !important;
+            color: var(--text-muted) !important;
+        }
+        .mobile-dropdown-link:hover {
+            color: var(--accent-color) !important;
+            padding-left: 36px !important;
+            background: var(--menu-hover-bg) !important;
+        }
+        [dir="rtl"] .mobile-dropdown-link:hover { padding-left: 28px !important; padding-right: 36px !important; }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .brand-icon-wrapper {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: rgba(245, 158, 11, 0.12);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        .brand-icon-wrapper i { color: var(--accent-color); font-size: 1.2rem; }
+        .brand-icon-wrapper:hover {
+            background: rgba(245, 158, 11, 0.25);
+            border-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+        .brand-logo {
+            font-size: 1.6rem;
+            font-weight: 700 !important;
+            letter-spacing: -0.5px;
+        }
+        .brand-logo span { color: var(--accent-color); }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent-light);
+            color: var(--accent-color);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            border: 1px solid var(--border-light);
+        }
+        .section-title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.15;
+        }
+        .section-title span { color: var(--accent-color); }
+        .section-sub {
+            color: var(--text-muted);
+            max-width: 600px;
+            font-size: 1.1rem;
+        }
+
+        /* ===== FOOTER — ALWAYS DARK ===== */
+        footer {
+            background: #0a1628 !important;
+            border-top: 1px solid #1a3a50 !important;
+            padding-top: 60px;
+            color: #e8f0f8 !important;
+        }
+        footer h4 {
+            color: #e8f0f8 !important;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 18px;
+            letter-spacing: 0.5px;
+        }
+        footer a, footer li, footer span:not(.brand-logo span) {
+            color: #a0b8d0 !important;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        footer a:hover { color: #f59e0b !important; }
+        footer .social-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #1a3a50 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            color: #a0b8d0 !important;
+            background: transparent;
+        }
+        footer .social-circle:hover {
+            background: #f59e0b !important;
+            border-color: #f59e0b !important;
+            color: #ffffff !important;
+            transform: translateY(-3px);
+        }
+        footer .footer-bottom {
+            border-top: 1px solid #1a3a50 !important;
+            padding: 24px 0;
+            margin-top: 40px;
+        }
+        footer .footer-bottom p { color: #6a8aaa !important; }
+        footer .footer-bottom a { color: #6a8aaa !important; }
+        footer .footer-bottom a:hover { color: #f59e0b !important; }
+        footer .brand-link .brand-icon-wrapper {
+            border-color: rgba(245, 158, 11, 0.3) !important;
+            background: rgba(245, 158, 11, 0.12) !important;
+        }
+        footer .brand-link .brand-icon-wrapper i { color: #f59e0b !important; }
+        footer .brand-link .brand-logo {
+            color: #e8f0f8 !important;
+            font-size: 1.6rem;
+            font-weight: 700 !important;
+            letter-spacing: -0.5px;
+        }
+        footer .brand-link .brand-logo span { color: #f59e0b !important; }
+        footer .footer-bottom .text-accent { color: #f59e0b !important; }
+        footer .back-top-link {
+            color: #6a8aaa !important;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            transition: color 0.3s;
+        }
+        footer .back-top-link:hover { color: #f59e0b !important; }
+        footer ul li i.fa-chevron-right { color: #f59e0b !important; font-size: 8px; }
+        footer ul li a:hover { padding-left: 12px !important; }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes float { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
+        @keyframes float-delayed { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        .animate-float-delayed { animation: float-delayed 4s ease-in-out 2s infinite; }
+        @keyframes subtleZoom { 0% { transform: scale(1); } 100% { transform: scale(1.06); } }
+        .animate-zoom { animation: subtleZoom 20s infinite alternate ease-in-out; }
+       
+
+        @media (max-width: 1024px) { .section-title { font-size: 2rem; } }
+        @media (max-width: 768px) {
+            body { padding-top: 64px; }
+            .navbar { padding: 0 16px; height: 64px; }
+            .navbar.scrolled { height: 58px; }
+            .section-title { font-size: 1.7rem; }
+            .brand-logo { font-size: 1.3rem; }
+            footer .brand-link .brand-logo { font-size: 1.3rem !important; }
+        }
+        @media (max-width: 480px) {
+            .section-title { font-size: 1.4rem; }
+            .brand-icon-wrapper { width: 34px; height: 34px; }
+            .brand-icon-wrapper i { font-size: 1rem; }
+            .brand-logo { font-size: 1.1rem; }
+            footer .brand-link .brand-logo { font-size: 1.1rem !important; }
+            footer .brand-link .brand-icon-wrapper { width: 34px; height: 34px; }
+            footer .brand-link .brand-icon-wrapper i { font-size: 1rem; }
+        }
+
+        [dir="rtl"] { text-align: right; }
+        [dir="rtl"] .ml-auto { margin-right: auto; margin-left: 0; }
+        [dir="rtl"] .mr-auto { margin-left: auto; margin-right: 0; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-dark); }
+
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
+        .trust-pulse { animation: pulse 2s ease-in-out infinite; }
+
+        .rtl-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            padding: 5px 12px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        .rtl-toggle:hover { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
+
+        @keyframes solarBeam {
+            0% { transform: rotate(0deg) scale(1); opacity: 0.15; }
+            50% { opacity: 0.3; }
+            100% { transform: rotate(360deg) scale(1.1); opacity: 0.15; }
+        }
+        .solar-beam { animation: solarBeam 14s linear infinite; }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-box {
+            background: var(--bg-card);
+            border-radius: 24px;
+            max-width: 440px;
+            width: 100%;
+            padding: 40px 32px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95) translateY(20px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--border-light);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-overlay.active .modal-box { transform: scale(1) translateY(0); }
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border-light);
+            background: var(--bg-secondary);
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        .modal-close:hover { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
+        .modal-box h2 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.8rem; margin-bottom: 0.25rem; color: var(--text-main); }
+        .modal-box p.sub { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.8rem; }
+        .modal-box .form-group { margin-bottom: 1.2rem; }
+        .modal-box label { display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); margin-bottom: 4px; }
+        .modal-box input { width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: 10px; background: var(--bg-secondary); color: var(--text-main); font-size: 1rem; transition: border 0.2s; outline: none; }
+        .modal-box input:focus { border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15); }
+        .modal-box .btn { width: 100%; justify-content: center; padding: 14px; font-size: 0.9rem; border-radius: 10px; margin-top: 8px; }
+        .modal-box .switch-link { text-align: center; margin-top: 1.2rem; font-size: 0.9rem; color: var(--text-muted); }
+        .modal-box .switch-link a { color: var(--accent-color); font-weight: 600; cursor: pointer; text-decoration: none; }
+        .modal-box .switch-link a:hover { text-decoration: underline; }
+        .modal-box .social-login { display: flex; gap: 12px; margin-top: 16px; }
+        .modal-box .social-login button { flex: 1; padding: 10px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-main); cursor: pointer; transition: all 0.2s; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .modal-box .social-login button:hover { background: var(--accent-light); border-color: var(--accent-color); }
+        .modal-box .divider { display: flex; align-items: center; gap: 16px; margin: 16px 0; color: var(--text-dim); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .modal-box .divider::before, .modal-box .divider::after { content: ''; flex: 1; height: 1px; background: var(--border-color); }
+
+        /* ===== PRODUCT PAGE SPECIFIC STYLES ===== */
+        .product-card {
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            border: 1px solid var(--border-light);
+            background: var(--bg-card);
+            overflow: hidden;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px var(--shadow-color);
+            border-color: var(--accent-color);
+        }
+        .product-card .product-img {
+            height: 200px;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--text-dim);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .product-card .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        .product-card:hover .product-img {
+            background: var(--accent-light);
+        }
+        .product-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--accent-color);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            z-index: 2;
+        }
+
+        .spec-table {
+            border-collapse: separate;
+            border-spacing: 0 8px;
+            width: 100%;
+        }
+        .spec-table th {
+            text-align: left;
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.85rem;
+            border-radius: 8px 0 0 8px;
+        }
+        .spec-table td {
+            padding: 12px 16px;
+            background: var(--bg-card);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-radius: 0 8px 8px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .spec-table tr:hover td {
+            background: var(--accent-light);
+            border-color: var(--accent-color);
+        }
+
+        .feature-icon-box {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: var(--accent-light);
+            color: var(--accent-color);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        .feature-item:hover .feature-icon-box {
+            background: var(--accent-color);
+            color: #fff;
+            transform: rotate(6deg) scale(1.05);
+        }
+        .feature-item {
+            transition: all 0.3s ease;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid transparent;
+        }
+        .feature-item:hover {
+            border-color: var(--border-light);
+            background: var(--bg-card);
+            box-shadow: 0 8px 24px var(--shadow-color);
+        }
+
+        /* ===== NEW: Image Content Section Styles ===== */
+        .img-content-wrap {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .img-content-wrap .img-box {
+            flex: 1 1 45%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px var(--shadow-color);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        .img-content-wrap .img-box img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .img-content-wrap .img-box:hover img {
+            transform: scale(1.04);
+        }
+        .img-content-wrap .content-box {
+            flex: 1 1 45%;
+        }
+        .img-content-wrap .content-box h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+        .img-content-wrap .content-box h3 span {
+            color: var(--accent-color);
+        }
+        .img-content-wrap .content-box p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .img-content-wrap .content-box .feature-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 16px;
+        }
+        .img-content-wrap .content-box .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .img-content-wrap .content-box .feature-list li:last-child {
+            border-bottom: none;
+        }
+        .img-content-wrap .content-box .feature-list li i {
+            color: var(--accent-color);
+            width: 20px;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .img-content-wrap { flex-direction: column; }
+            .img-content-wrap .img-box, .img-content-wrap .content-box { flex: 1 1 100%; }
+            .img-content-wrap .img-box img { height: 220px; }
+            .img-content-wrap .content-box h3 { font-size: 1.4rem; }
+        }
+
+        /* ===== NEW: Gallery Grid ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .gallery-grid .gallery-item {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--border-light);
+            transition: all 0.4s ease;
+            aspect-ratio: 4/3;
+        }
+        .gallery-grid .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-grid .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery-grid .gallery-item:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 12px 32px var(--shadow-color);
+        }
+        .gallery-grid .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: #fff;
+        }
+        .gallery-grid .gallery-item .overlay h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .gallery-grid .gallery-item .overlay p {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            margin: 4px 0 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- NAVBAR – EXACT COPY                                           -->
+    <!-- ============================================================ -->
+    <nav class="navbar" id="main-nav">
+        <div class="w-full flex items-center justify-between max-w-[1440px] mx-auto">
+            <!-- Brand -->
+            <a href="#home" class="brand-link">
+                <div class="brand-icon-wrapper">
+                    <i class="fas fa-solar-panel"></i>
+                </div>
+                <div class="brand-logo" style="color: var(--text-main) !important;">
+                    <span>Solar</span>Nova
+                </div>
+            </a>
+
+            <!-- ===== DESKTOP NAV ===== -->
+            <div class="hidden xl:flex justify-center items-center flex-1 gap-1">
+                <!-- HOME DROPDOWN -->
+                <div class="dropdown">
+                    <div class="nav-link">
+                        Home <i class="fas fa-chevron-down text-[8px] ml-1 opacity-50"></i>
+                    </div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-inner">
+                            <a href="index.html" class="dropdown-item">Home 1</a>
+                            <a href="home-2.html" class="dropdown-item">Home 2</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- About -->
+                <a href="about.html" class="nav-link active">About</a>
+                
+                <!-- CALCULATOR -->
+                <a href="calculator.html" class="nav-link">Calculator</a>
+                <!-- process -->
+                <a href="process.html" class="nav-link">process</a>
+                <!-- PROJECTS -->
+                <a href="projects.html" class="nav-link">Projects</a>
+                <!-- FAQ -->
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <!-- CONTACT -->
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+
+            <!-- ===== DESKTOP ACTIONS (Login & Signup as direct links) ===== -->
+            <div class="hidden xl:flex items-center gap-3">
+                <!-- Login Link -->
+                <a href="login.html" class="btn btn-outline !py-1.5 !px-5 !text-[10px]">Login</a>
+                <!-- Signup Link -->
+                <a href="signup.html" class="btn btn-solid !py-1.5 !px-5 !text-[10px]">SignUp</a>
+
+                <div class="w-px h-5 bg-[var(--border-light)] mx-1"></div>
+
+                <button id="theme-toggle-desktop" class="theme-btn" aria-label="Toggle theme">
+                    <i class="fas fa-moon" id="theme-icon-desktop"></i>
+                </button>
+                <button id="rtl-btn" class="rtl-toggle" title="Toggle LTR/RTL">LTR</button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="xl:hidden flex items-center justify-end gap-2">
+                <button id="mobile-btn" class="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================================ -->
+    <!-- MOBILE DRAWER – EXACT COPY                                    -->
+    <!-- ============================================================ -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="fullscreen-menu" id="fullscreen-menu">
+        <div class="w-full px-5 py-5 flex justify-between items-center shrink-0 border-b border-[var(--border-light)]">
+            <a href="#home" class="brand-link" onclick="closeMenu()">
+                <div class="brand-icon-wrapper"><i class="fas fa-solar-panel"></i></div>
+                <div class="brand-logo" style="color: var(--text-main) !important;"><span>Solar</span>Nova</div>
+            </a>
+            <button id="close-menu" class="w-10 h-10 flex items-center justify-center text-2xl text-[var(--text-main)] hover:text-[var(--accent-color)] transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="flex flex-col w-full overflow-y-auto flex-1 py-3">
+            <div class="mobile-dropdown">
+                <div class="mobile-dropdown-header" id="mobile-home-toggle">
+                    <span>Home</span> <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="mobile-dropdown-items" id="mobile-home-items">
+                    <a href="index.html" class="mobile-link mobile-dropdown-link" onclick="closeMenu()">Home 1</a>
+                    <a href="home-2.html" class="mobile-link mobile-dropdown-link" onclick="closeMenu()">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="mobile-link" onclick="closeMenu()">About</a>
+            <a href="calculator.html" class="mobile-link" onclick="closeMenu()">Solar Savings Calculator</a>
+            <a href="process.html" class="mobile-link" onclick="closeMenu()">process</a>
+            <a href="projects.html" class="mobile-link" onclick="closeMenu()">Projects Gallery</a>
+            <a href="faq.html" class="mobile-link" onclick="closeMenu()">FAQ</a>
+            <a href="contact.html" class="mobile-link" onclick="closeMenu()">Contact</a>
+            <div class="grid grid-cols-2 gap-3 mt-4 px-5">
+                <button onclick="closeMenu(); openModal('login')" class="btn btn-outline !py-3 w-full">Login</button>
+                <button onclick="closeMenu(); openModal('signup')" class="btn btn-solid !py-3 w-full">Sign Up</button>
+            </div>
+        </div>
+        <div class="w-full px-5 py-5 border-t border-[var(--border-light)] flex flex-col gap-4 shrink-0 bg-[var(--bg-secondary)]">
+            
+            <div class="flex justify-between items-center w-full">
+                <div class="flex items-center gap-3">
+                    <span class="text-[var(--text-dim)] font-medium text-[10px] uppercase tracking-widest">Theme</span>
+                    <button id="theme-toggle-mobile" class="theme-btn" aria-label="Toggle theme">
+                        <i class="fas fa-moon" id="theme-icon-mobile"></i>
+                    </button>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-[var(--text-dim)] font-medium text-[10px] uppercase tracking-widest">Dir</span>
+                    <button id="rtl-toggle-mobile" class="rtl-toggle" title="Toggle RTL/LTR">
+                        <span class="rtl-text">LTR</span> <i class="fas fa-arrow-right-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+            <a href="tel:+16001234567" class="btn btn-outline w-full !py-2.5 text-center" onclick="closeMenu()">
+                <i class="fas fa-phone-alt mr-2"></i> Call for Expert Advice
+            </a>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- LOGIN MODAL – EXACT COPY                                      -->
+    <!-- ============================================================ -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('login')"><i class="fas fa-times"></i></button>
+            <h2>Welcome Back</h2>
+            <p class="sub">Log in to your SolarNova account</p>
+            <form onsubmit="event.preventDefault(); alert('Logged in (demo)'); closeModal('login');">
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-solid">Log In</button>
+            </form>
+            <div class="divider">or continue with</div>
+            <div class="social-login">
+                <button><i class="fab fa-google"></i> Google</button>
+                <button><i class="fab fa-facebook-f"></i> Facebook</button>
+            </div>
+            <div class="switch-link">
+                Don't have an account? <a onclick="closeModal('login'); openModal('signup')">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SIGNUP MODAL – EXACT COPY                                     -->
+    <!-- ============================================================ -->
+    <div class="modal-overlay" id="signup-modal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('signup')"><i class="fas fa-times"></i></button>
+            <h2>Create Account</h2>
+            <p class="sub">Join SolarNova and start saving</p>
+            <form onsubmit="event.preventDefault(); alert('Signed up (demo)'); closeModal('signup');">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email Address</label>
+                    <input type="email" id="signup-email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" placeholder="Min 8 characters" required>
+                </div>
+                <button type="submit" class="btn btn-solid">Create Account</button>
+            </form>
+            <div class="divider">or continue with</div>
+            <div class="social-login">
+                <button><i class="fab fa-google"></i> Google</button>
+                <button><i class="fab fa-facebook-f"></i> Facebook</button>
+            </div>
+            <div class="switch-link">
+                Already have an account? <a onclick="closeModal('signup'); openModal('login')">Log in</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- HERO BANNER – About FOCUSED                                -->
+    <!-- ============================================================ -->
+    <section id="home" class="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden border-b border-[var(--border-light)]">
+        <!-- Background Image – Solar Panel Closeup / About -->
+        <div class="absolute inset-0 z-0">
+            <img src="pic/sol4.webp"
+            alt="Solar Panel Closeup - SolarNova About"
+            class="w-full h-full object-cover scale-110 animate-zoom">
+
+            <!-- Enhanced overlay – dark/neutral gradient -->
+            <div class="absolute inset-0 hero-overlay"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-[#0a1628]/85 via-[#0a1628]/50 to-[#0a1628]/75"></div>
+
+            <!-- Decorative floating elements -->
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-white/5 blur-3xl solar-beam pointer-events-none"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-white/5 blur-3xl solar-beam pointer-events-none" style="animation-delay: 4s;"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+            <!-- Trust Badge -->
+            <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-5 py-2.5 rounded-full mb-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#f59e0b] opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-[#f59e0b]"></span>
+                </span>
+                <span class="text-white text-xs font-bold uppercase tracking-[0.2em]">
+                    <i class="fas fa-cube mr-2"></i> Premium Quality · Certified About
+                </span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight text-white mb-5 drop-shadow-lg">
+                Premium Solar<br>
+                <span class="text-[#f59e0b] drop-shadow-md relative">
+                    About & Solutions
+                    <svg class="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 200 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      
+                    </svg>
+                </span>
+            </h1>
+
+            <p class="text-white/80 text-lg sm:text-xl max-w-2xl mx-auto mb-8 leading-relaxed drop-shadow-md">
+                Explore our wide range of high-efficiency solar panels, smart inverters, and durable mounting systems.
+                Engineered for maximum performance and long-term reliability.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 w-full">
+                <a href="#About" class="group w-full sm:w-auto px-8 py-3.5 sm:px-10 sm:py-4 bg-[#f59e0b] text-white rounded-full font-semibold text-base sm:text-lg hover:scale-105 transition duration-300 shadow-lg shadow-[#f59e0b]/30 hover:shadow-[#f59e0b]/50 block relative overflow-hidden">
+                    <span class="relative z-10 flex items-center justify-center">
+                        <i class="fas fa-search mr-2"></i> Browse Catalog
+                        <i class="fas fa-arrow-right ml-2 text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
+                    <span class="absolute inset-0 bg-gradient-to-r from-[#f59e0b] to-[#fdc94f] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                </a>
+                <a href="contact.html" class="group w-full sm:w-auto px-8 py-3.5 sm:px-10 sm:py-4 border-2 border-white text-white rounded-full font-semibold text-base sm:text-lg hover:bg-white hover:text-[#0a1628] transition duration-300 shadow-lg block relative overflow-hidden">
+                    <span class="relative z-10 flex items-center justify-center">
+                        <i class="fas fa-file-invoice mr-2"></i> Get a Quote
+                        <i class="fas fa-arrow-right ml-2 text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
+                    <span class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
+                </a>
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="mt-12 flex flex-wrap justify-center items-center gap-8 text-white/90">
+                <div class="flex items-center gap-2.5 text-sm font-medium hover:text-white transition-colors duration-200">
+                    <div class="w-9 h-9 rounded-full bg-[#f59e0b]/20 flex items-center justify-center border border-[#f59e0b]/30">
+                        <i class="fas fa-shield-alt text-[#f59e0b] text-base"></i>
+                    </div>
+                    <span>25-Year Warranty</span>
+                </div>
+                <div class="flex items-center gap-2.5 text-sm font-medium hover:text-white transition-colors duration-200">
+                    <div class="w-9 h-9 rounded-full bg-[#f59e0b]/20 flex items-center justify-center border border-[#f59e0b]/30">
+                        <i class="fas fa-certificate text-[#f59e0b] text-base"></i>
+                    </div>
+                    <span>IEC & BIS Certified</span>
+                </div>
+                <div class="flex items-center gap-2.5 text-sm font-medium hover:text-white transition-colors duration-200">
+                    <div class="w-9 h-9 rounded-full bg-[#f59e0b]/20 flex items-center justify-center border border-[#f59e0b]/30">
+                        <i class="fas fa-bolt text-[#f59e0b] text-base"></i>
+                    </div>
+                    <span>Up to 22% Efficiency</span>
+                </div>
+                <div class="flex items-center gap-2.5 text-sm font-medium hover:text-white transition-colors duration-200">
+                    <div class="w-9 h-9 rounded-full bg-[#f59e0b]/20 flex items-center justify-center border border-[#f59e0b]/30">
+                        <i class="fas fa-globe-asia text-[#f59e0b] text-base"></i>
+                    </div>
+                    <span>Made for Indian Climate</span>
+                </div>
+            </div>
+
+            <!-- Floating Decor -->
+            <div class="absolute -top-10 left-10 animate-float opacity-15 hidden lg:block">
+                <i class="fas fa-solar-panel text-6xl text-white/30"></i>
+            </div>
+            <div class="absolute -bottom-10 right-10 animate-float-delayed opacity-15 hidden lg:block">
+                <i class="fas fa-microchip text-6xl text-white/30"></i>
+            </div>
+        </div>
+    </section>
+
+  
+    <!-- ============================================================ -->
+    <!-- SECTION 2: FEATURED PRODUCT – IMAGE + CONTENT (80 lines)      -->
+    <!-- ============================================================ -->
+    <section class="py-20 px-6 border-b border-[var(--border-light)]" style="background: var(--bg-color);">
+        <div class="max-w-[1200px] mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="section-tag"><i class="fas fa-crown"></i> OUR STORY</span>
+                <h2 class="section-title mt-4">Our <span>Flagship</span> Solar Panel</h2>
+                <p class="section-sub mx-auto mt-3">Engineered with next-generation technology for unmatched performance and durability.</p>
+            </div>
+            <div class="img-content-wrap">
+                <div class="img-box">
+                    <img src="pic/sol7.webp" alt="SolarNova Flagship Panel">
+                </div>
+                <div class="content-box">
+                    <h3>SN-M550 <span>Pro Series</span></h3>
+                    <p>The SN-M550 Pro is our most advanced solar panel, featuring half-cut cell technology and a sleek all-black design. Delivering 22.5% efficiency with superior low-light performance.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-bolt"></i> 550W Peak Power · 22.5% Efficiency</li>
+                        <li><i class="fas fa-shield-alt"></i> 30-Year Performance Warranty</li>
+                        <li><i class="fas fa-sun"></i> Bifacial Design · 20% Extra Yield</li>
+                        <li><i class="fas fa-microchip"></i> Smart MPPT Compatible</li>
+                    </ul>
+                    <a href="#" class="btn btn-solid !px-8 !py-2.5 mt-4 text-xs">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 3: BEST SELLERS – with Real Product Images           -->
+    <!-- ============================================================ -->
+    <section class="py-20 px-6 border-b border-[var(--border-light)]" style="background: var(--bg-secondary);">
+        <div class="max-w-[1440px] mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="section-tag"><i class="fas fa-star"></i> Bestsellers</span>
+                <h2 class="section-title mt-4">Top Rated <span>About</span></h2>
+                <p class="section-sub mx-auto mt-3">Our customers' top picks. Proven performance, exceptional quality, and maximum savings.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Product 1 -->
+                <div class="product-card rounded-2xl relative">
+                    <span class="product-tag"><i class="fas fa-crown mr-1"></i> #1 Best Seller</span>
+                    <div class="product-img"><img src="pic/sol5.webp" alt="550W Mono Panel"></div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-[var(--text-main)]">550W Mono Panel</h3>
+                        <p class="text-[var(--text-muted)] text-sm mt-1">SN-M550 | 144 Cells | Half-Cut</p>
+                        <div class="flex items-baseline gap-2 mt-3">
+                            <span class="text-2xl font-bold text-[var(--accent-color)]">₹12,000</span>
+                            <span class="text-[var(--text-dim)] text-xs line-through">₹15,000</span>
+                        </div>
+                        <ul class="mt-3 space-y-1 text-sm text-[var(--text-muted)]">
+                            <li><i class="fas fa-check text-[var(--accent-color)] mr-2"></i> 22.5% Efficiency</li>
+                            <li><i class="fas fa-check text-[var(--accent-color)] mr-2"></i> 25-Year Performance Warranty</li>
+                        </ul>
+                        <a href="#" class="btn btn-solid w-full !py-2.5 mt-4 text-xs">Add to Cart</a>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card rounded-2xl relative">
+                    <span class="product-tag"><i class="fas fa-fire mr-1"></i> Hot Deal</span>
+                    <div class="product-img"><img src="pic/sol2.webp" alt="5kW Hybrid Inverter"></div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-[var(--text-main)]">5kW Hybrid Inverter</h3>
+                        <p class="text-[var(--text-muted)] text-sm mt-1">SN-HI5000 | Dual MPPT</p>
+                        <div class="flex items-baseline gap-2 mt-3">
+                            <span class="text-2xl font-bold text-[var(--accent-color)]">₹45,000</span>
+                            <span class="text-[var(--text-dim)] text-xs line-through">₹55,000</span>
+                        </div>
+                        <ul class="mt-3 space-y-1 text-sm text-[var(--text-muted)]">
+                            <li><i class="fas fa-check text-[var(--accent-color)] mr-2"></i> 98.5% Efficiency</li>
+                            <li><i class="fas fa-check text-[var(--accent-color)] mr-2"></i> Smart WiFi Monitoring</li>
+                        </ul>
+                        <a href="#" class="btn btn-solid w-full !py-2.5 mt-4 text-xs">Add to Cart</a>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card rounded-2xl relative">
+                    <span class="product-tag"><i class="fas fa-battery-full mr-1"></i> Top Rated</span>
+                    <div class="product-img"><img src="pic/sol6.webp" alt="10kWh Lithium Battery"></div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-[var(--text-main)]">10kWh Lithium Battery</h3>
+                        <p class="text-[var(--text-muted)] text-sm mt-1">SN-LFP10 | 48V | Wall-Mount</p>
+                        <div class="flex items-baseline gap-2 mt-3">
+                            <span class="text-2xl font-bold text-[var(--accent-color)]">₹80,000</span>
+                            <span class="text-[var(--text-dim)] text-xs line-through">₹95,000</span>
+                        </div>
+                        <ul class="mt-3 space-y-1 text-sm text-[var(--text-muted)]">
+                            <li><i class="fas fa-check text-[var(--accent-color)] mr-2"></i> 6000+ Cycles</li>
+                            <li><i class="fas fa-check text-[var(--accent-color)] mr-2"></i> 10-Year Warranty</li>
+                        </ul>
+                        <a href="#" class="btn btn-solid w-full !py-2.5 mt-4 text-xs">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 4: KEY FEATURES – 73 LINES                           -->
+    <!-- ============================================================ -->
+    <section class="py-20 px-6 border-b border-[var(--border-light)]" style="background: var(--bg-color);">
+        <div class="max-w-[1440px] mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="section-tag"><i class="fas fa-microchip"></i> Features</span>
+                <h2 class="section-title mt-4">Why Our About <span>Stand Out</span></h2>
+                <p class="section-sub mx-auto mt-3">Innovative technology built into every product to deliver superior performance, durability, and safety.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="feature-item text-center">
+                    <div class="feature-icon-box mx-auto"><i class="fas fa-cut"></i></div>
+                    <h3 class="text-lg font-bold text-[var(--text-main)] mt-4 mb-2">Half-Cut Technology</h3>
+                    <p class="text-[var(--text-muted)] text-sm leading-relaxed">Reduces internal resistance and improves performance in shaded conditions, boosting overall yield.</p>
+                </div>
+                <div class="feature-item text-center">
+                    <div class="feature-icon-box mx-auto"><i class="fas fa-shield-virus"></i></div>
+                    <h3 class="text-lg font-bold text-[var(--text-main)] mt-4 mb-2">Anti-PID Technology</h3>
+                    <p class="text-[var(--text-muted)] text-sm leading-relaxed">Prevents potential-induced degradation, ensuring consistent power output and longevity.</p>
+                </div>
+                <div class="feature-item text-center">
+                    <div class="feature-icon-box mx-auto"><i class="fas fa-wifi"></i></div>
+                    <h3 class="text-lg font-bold text-[var(--text-main)] mt-4 mb-2">Smart Monitoring</h3>
+                    <p class="text-[var(--text-muted)] text-sm leading-relaxed">Real-time performance tracking via mobile app. Monitor each panel individually for maximum efficiency.</p>
+                </div>
+                <div class="feature-item text-center">
+                    <div class="feature-icon-box mx-auto"><i class="fas fa-wind"></i></div>
+                    <h3 class="text-lg font-bold text-[var(--text-main)] mt-4 mb-2">Durable Design</h3>
+                    <p class="text-[var(--text-muted)] text-sm leading-relaxed">Built with robust aluminum frames and tempered glass, resistant to heavy winds and snow loads.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- ============================================================ -->
+<!-- SECTION 5: MEET THE TEAM                                      -->
+<!-- ============================================================ -->
+<section class="py-20 px-6 border-b border-[var(--border-light)]" style="background: var(--bg-secondary);">
+    <div class="max-w-[1440px] mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <span class="section-tag"><i class="fas fa-users"></i> Team</span>
+            <h2 class="section-title mt-4">Meet the <span>Team</span></h2>
+            <p class="section-sub mx-auto mt-3">Passionate solar experts dedicated to powering a sustainable future. Get to know the minds behind SolarNova.</p>
+        </div>
+
+        <!-- Team Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Team Member 1 -->
+            <div class="team-card rounded-2xl overflow-hidden bg-[var(--bg-card)] border border-[var(--border-light)] transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:border-[var(--accent-color)] group">
+                <div class="relative overflow-hidden">
+                    <img src="pic/team1.webp" alt="CEO" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0a1628]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="p-6 text-center">
+                    <h3 class="text-lg font-bold text-[var(--text-main)]">Vikram Singh</h3>
+                    <p class="text-sm font-medium text-[var(--accent-color)]">Founder & CEO</p>
+                    <p class="text-[var(--text-muted)] text-sm mt-2 leading-relaxed">15+ years in renewable energy, former lead at Tata Power Solar.</p>
+                    <div class="flex justify-center gap-3 mt-4">
+                        <a href="#" class="w-8 h-8 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--text-dim)] hover:bg-[var(--accent-color)] hover:text-white transition-all duration-300"><i class="fab fa-linkedin-in text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--text-dim)] hover:bg-[var(--accent-color)] hover:text-white transition-all duration-300"><i class="fab fa-instagram text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--text-dim)] hover:bg-[var(--accent-color)] hover:text-white transition-all duration-300"><i class="fab fa-facebook-f text-xs"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="team-card rounded-2xl overflow-hidden bg-[var(--bg-card)] border border-[var(--border-light)] transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:border-[var(--accent-color)] group">
+                <div class="relative overflow-hidden">
+                    <img src="pic/team2.webp" alt="CTO" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0a1628]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="p-6 text-center">
+                    <h3 class="text-lg font-bold text-[var(--text-main)]">Priya Sharma</h3>
+                    <p class="text-sm font-medium text-[var(--accent-color)]">Chief Technology Officer</p>
+                    <p class="text-[var(--text-muted)] text-sm mt-2 leading-relaxed">PhD in Photovoltaics, 10 patents in solar cell efficiency.</p>
+                    <div class="flex justify-center gap-3 mt-4">
+                        <a href="#" class="w-8 h-8 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--text-dim)] hover:bg-[var(--accent-color)] hover:text-white transition-all duration-300"><i class="fab fa-linkedin-in text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--text-dim)] hover:bg-[var(--accent-color)] hover:text-white transition-all duration-300"><i class="fab fa-instagram text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--text-dim)] hover:bg-[var(--accent-color)] hover:text-white transition-all duration-300"><i class="fab fa-github text-xs"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="team-card rounded-2xl overflow-hidden bg-[var(--bg-card)] border border-[var(--border-light)] transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:border-[var(--accent-color)] group">
+                <div class="relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&h=400&q=80" alt="Head of Sales" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0a1628]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="p-6 text-center">
+                    <h3 class="text-lg font-bold text-[var(--text-main)]">Rahul Mehta</h3>
+                    <p class="text-sm font-medium text-[var(--accent-color)]">Head of Sales</p>
+                    <p class="text-[var(--text-muted)] text-sm mt-2 leading-relaxed">Built 200+ solar projects across India, customer satisfaction 98%.</p>
+                    <div class="flex justify-center gap-3 mt-4">
+                        <a href="#" class="w-8 h-8 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--text-dim)] hover:bg-[var(--accent-color)] hover:text-white transition-all duration-300"><i class="fab fa-linkedin-in text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--text-dim)] hover:bg-[var(--accent-color)] hover:text-white transition-all duration-300"><i class="fab fa-instagram text-xs"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 4 -->
+            <div class="team-card rounded-2xl overflow-hidden bg-[var(--bg-card)] border border-[var(--border-light)] transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:border-[var(--accent-color)] group">
+                <div class="relative overflow-hidden">
+                    <img src="pic/team3.webp" alt="Lead Engineer" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0a1628]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="p-6 text-center">
+                    <h3 class="text-lg font-bold text-[var(--text-main)]">Ananya Reddy</h3>
+                    <p class="text-sm font-medium text-[var(--accent-color)]">Lead Design Engineer</p>
+                    <p class="text-[var(--text-muted)] text-sm mt-2 leading-relaxed">Specializes in high-efficiency rooftop systems and off-grid solutions.</p>
+                    <div class="flex justify-center gap-3 mt-4">
+                        <a href="#" class="w-8 h-8 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--text-dim)] hover:bg-[var(--accent-color)] hover:text-white transition-all duration-300"><i class="fab fa-linkedin-in text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--text-dim)] hover:bg-[var(--accent-color)] hover:text-white transition-all duration-300"><i class="fab fa-instagram text-xs"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional CTA -->
+        <div class="text-center mt-12">
+            <a href="contact.html" class="btn btn-solid !px-8 !py-3">
+                <i class="fas fa-handshake mr-2"></i> Work With Us
+            </a>
+        </div>
+    </div>
+</section>
+
+    
+    <!-- ============================================================ -->
+    <!-- SECTION 7: QUALITY ASSURANCE + IMAGE – 78 LINES              -->
+    <!-- ============================================================ -->
+    <section class="py-20 px-6 border-b border-[var(--border-light)]" style="background: var(--bg-secondary);">
+        <div class="max-w-[1200px] mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="section-tag"><i class="fas fa-check-double"></i> Quality</span>
+                <h2 class="section-title mt-4">Quality You <span>Can Trust</span></h2>
+                <p class="section-sub mx-auto mt-3">Every product is rigorously tested and certified to meet global standards, ensuring reliable performance for decades.</p>
+            </div>
+            <div class="img-content-wrap flex-row-reverse">
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Quality Assurance">
+                </div>
+                <div class="content-box">
+                    <h3>Certified <span>Excellence</span></h3>
+                    <p>Our About undergo rigorous testing at every stage — from raw material selection to final assembly. We hold the highest certifications in the industry.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-certificate"></i> IEC 61215 & 61730 Certified</li>
+                        <li><i class="fas fa-clipboard-check"></i> BIS & MNRE Approved</li>
+                        <li><i class="fas fa-flask"></i> 100% EL Tested for Micro-Cracks</li>
+                        <li><i class="fas fa-file-signature"></i> 25-Year Product & Performance Warranty</li>
+                    </ul>
+                    <a href="contact.html" class="inline-flex items-center gap-2 text-[var(--accent-color)] font-semibold hover:gap-4 transition-all duration-300 mt-4">
+                        Request a Demo <i class="fas fa-arrow-right text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- ============================================================ -->
+    <!-- FOOTER – EXACT COPY                                           -->
+    <!-- ============================================================ -->
+    <footer>
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                <!-- Brand -->
+                <div>
+                    <a href="#home" class="brand-link inline-flex">
+                        <div class="brand-icon-wrapper"><i class="fas fa-solar-panel"></i></div>
+                        <div class="brand-logo" style="color: #e8f0f8 !important; font-size: 1.6rem; font-weight: 700 !important; letter-spacing: -0.5px;">
+                            <span style="color: #f59e0b !important;">Solar</span><span style="color: #e8f0f8 !important;">Nova</span>
+                        </div>
+                    </a>
+                    <p class="text-[#a0b8d0] text-sm leading-relaxed mt-4">Empowering homes and businesses with clean, renewable solar energy. Save money, reduce carbon footprint, and embrace a sustainable future.</p>
+                    <div class="flex gap-3 mt-5">
+                        <a href="#" class="social-circle"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-linkedin-in"></i></a>
+                       
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="#home" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> Home</a></li>
+                        <li><a href="about.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> About</a></li>
+                        <li><a href="calculator.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> Savings Calculator</a></li>
+                        <li><a href="process.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> process</a></li>
+                        <li><a href="projects.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> Projects Gallery</a></li>
+                        <li><a href="faq.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> FAQ</a></li>
+                        <li><a href="contact.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- About by Capacity -->
+                <div>
+                    <h4>Solar Systems</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="about.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> 1kW – 3kW (Homes)</a></li>
+                        <li><a href="about.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> 3kW – 5kW (Villas)</a></li>
+                        <li><a href="about.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> 5kW – 10kW (Shops)</a></li>
+                        <li><a href="about.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> 10kW+ (Offices)</a></li>
+                        <li><a href="about.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> Solar Accessories</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4>Get in Touch</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-[#f59e0b] mt-0.5"></i>
+                            <span class="text-[#a0b8d0]">45 Solar Park, Green Valley, New Delhi 110001</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-phone text-[#f59e0b] mt-0.5"></i>
+                            <span class="text-[#a0b8d0]"><a href="tel:+16001234567" class="hover:text-[#f59e0b]">+1 600 123 4567</a></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-envelope text-[#f59e0b] mt-0.5"></i>
+                            <span class="text-[#a0b8d0]"><a href="mailto:info@solarnova.com" class="hover:text-[#f59e0b]">info@solarnova.com</a></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-clock text-[#f59e0b] mt-0.5"></i>
+                            <span class="text-[#a0b8d0]">Mon–Sat: 8:00 AM – 8:00 PM</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-headset text-[#f59e0b] mt-0.5"></i>
+                            <span class="text-[#a0b8d0]">24/7 Emergency Support</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-[#6a8aaa]">&copy; 2026 <span class="text-[#f59e0b] font-semibold">SolarNova</span> Renewables. All rights reserved.</p>
+                <div class="flex flex-wrap gap-6 text-sm">
+                    <a href="#" class="text-[#6a8aaa] hover:text-[#f59e0b] transition-colors">Terms of Service</a>
+                    <a href="#" class="text-[#6a8aaa] hover:text-[#f59e0b] transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-[#6a8aaa] hover:text-[#f59e0b] transition-colors">Refund Policy</a>
+                    <a href="#" class="text-[#6a8aaa] hover:text-[#f59e0b] transition-colors">Cookie Policy</a>
+                    <a href="#" class="text-[#6a8aaa] hover:text-[#f59e0b] transition-colors">Sitemap</a>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="#home" class="back-top-link inline-flex items-center gap-2 text-[#6a8aaa] text-xs font-semibold uppercase tracking-widest hover:text-[#f59e0b] transition-colors">
+                    <i class="fas fa-arrow-up"></i> Back to Top
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT – EXACT COPY                                       -->
+    <!-- ============================================================ -->
+    <script>
+        // ===== NAVBAR SCROLL =====
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 30) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        // ===== MOBILE DRAWER =====
+        const mobileBtn = document.getElementById('mobile-btn');
+        const fullscreenMenu = document.getElementById('fullscreen-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const drawerOverlay = document.getElementById('drawer-overlay');
+
+        function toggleMenu() {
+            fullscreenMenu.classList.toggle('active');
+            drawerOverlay.classList.toggle('active');
+            document.body.style.overflow = fullscreenMenu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        function closeMenu() {
+            fullscreenMenu.classList.remove('active');
+            drawerOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        mobileBtn.onclick = toggleMenu;
+        closeMenuBtn.onclick = closeMenu;
+        drawerOverlay.onclick = closeMenu;
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1280) closeMenu();
+        });
+
+        // ===== THEME TOGGLE =====
+        const themeDesk = document.getElementById('theme-toggle-desktop');
+        const themeMob = document.getElementById('theme-toggle-mobile');
+        const iconDesk = document.getElementById('theme-icon-desktop');
+        const iconMob = document.getElementById('theme-icon-mobile');
+
+        const savedTheme = localStorage.getItem('solarnova-theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = savedTheme ? savedTheme === 'dark' : systemDark;
+
+        function setTheme(dark) {
+            if (dark) {
+                document.body.classList.add('dark-mode');
+                if (iconDesk) iconDesk.className = 'fas fa-sun';
+                if (iconMob) iconMob.className = 'fas fa-sun';
+                localStorage.setItem('solarnova-theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                if (iconDesk) iconDesk.className = 'fas fa-moon';
+                if (iconMob) iconMob.className = 'fas fa-moon';
+                localStorage.setItem('solarnova-theme', 'light');
+            }
+        }
+
+        setTheme(isDark);
+
+        function toggleTheme() {
+            const currentlyDark = document.body.classList.contains('dark-mode');
+            setTheme(!currentlyDark);
+        }
+
+        if (themeDesk) themeDesk.addEventListener('click', toggleTheme);
+        if (themeMob) themeMob.addEventListener('click', toggleTheme);
+
+        // ===== RTL TOGGLE =====
+        const rtlBtn = document.getElementById('rtl-btn');
+        const rtlMob = document.getElementById('rtl-toggle-mobile');
+        const rtlTexts = document.querySelectorAll('.rtl-text');
+
+        function toggleRTL() {
+            const html = document.documentElement;
+            if (html.dir === 'rtl') {
+                html.dir = 'ltr';
+                rtlTexts.forEach(el => el.textContent = 'LTR');
+                if (rtlBtn) rtlBtn.innerHTML = 'LTR <i class="fas fa-arrow-right-arrow-left"></i>';
+            } else {
+                html.dir = 'rtl';
+                rtlTexts.forEach(el => el.textContent = 'RTL');
+                if (rtlBtn) rtlBtn.innerHTML = 'RTL <i class="fas fa-arrow-right-arrow-left"></i>';
+            }
+        }
+
+        if (rtlBtn) rtlBtn.addEventListener('click', toggleRTL);
+        if (rtlMob) rtlMob.addEventListener('click', toggleRTL);
+
+        // ===== MOBILE DROPDOWN TOGGLES =====
+        (function() {
+            const homeToggle = document.getElementById('mobile-home-toggle');
+            const homeItems = document.getElementById('mobile-home-items');
+            if (homeToggle && homeItems) {
+                homeToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.classList.toggle('open');
+                    homeItems.classList.toggle('open');
+                });
+            }
+        })();
+
+        // ===== MODAL CONTROLS =====
+        function openModal(type) {
+            const modal = document.getElementById(type + '-modal');
+            if (modal) modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(type) {
+            const modal = document.getElementById(type + '-modal');
+            if (modal) modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

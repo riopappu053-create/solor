@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolarNova · Residential Solar Panel Installation</title>
+    <link rel="icon" type="image/jpeg" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f59e0b' rx='20'/%3E%3Ctext x='50' y='68' font-size='56' text-anchor='middle' fill='white' font-family='Arial'%3E☀%3C/text%3E%3C/svg%3E" />
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'system-ui', 'sans-serif'],
+                        display: ['"Poppins"', 'sans-serif'],
+                    },
+                    colors: {
+                        solar: {
+                            50: '#fff9e6',
+                            100: '#ffefc2',
+                            200: '#ffdf8a',
+                            300: '#fdc94f',
+                            400: '#f5b82e',
+                            500: '#f59e0b',
+                            600: '#d97d00',
+                            700: '#b85d00',
+                            800: '#934800',
+                            900: '#783a00',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1a2a3a;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+            padding-top: 60px;
+        }
+
+        /* ===== THEME VARIABLES ===== */
+        :root {
+            --bg-color: #f8fafc;
+            --bg-secondary: #f0f4f8;
+            --bg-card: #ffffff;
+            --bg-inverted: #0a1a2a;
+            --text-main: #1a2a3a;
+            --text-muted: #4a5a6a;
+            --text-dim: #7a8a9a;
+            --accent-color: #f59e0b;
+            --accent-dark: #d97d00;
+            --accent-light: #fff9e6;
+            --border-color: #d0dce8;
+            --border-light: rgba(245, 158, 11, 0.15);
+            --nav-bg: rgba(255, 255, 255, 0.92);
+            --drawer-bg: rgba(255, 255, 255, 0.98);
+            --menu-hover-bg: rgba(245, 158, 11, 0.08);
+            --shadow-color: rgba(245, 158, 11, 0.08);
+            --success-color: #f59e0b;
+        }
+
+        body.dark-mode {
+            --bg-color: #0a1628;
+            --bg-secondary: #0f1f33;
+            --bg-card: #142a40;
+            --bg-inverted: #f0f4f8;
+            --text-main: #e8f0f8;
+            --text-muted: #a0b8d0;
+            --text-dim: #6a8aaa;
+            --accent-color: #f59e0b;
+            --accent-dark: #fdc94f;
+            --accent-light: #1a2a0a;
+            --border-color: #1a3a50;
+            --border-light: rgba(245, 158, 11, 0.2);
+            --nav-bg: rgba(10, 22, 40, 0.92);
+            --drawer-bg: rgba(10, 22, 40, 0.98);
+            --menu-hover-bg: rgba(245, 158, 11, 0.12);
+            --shadow-color: rgba(245, 158, 11, 0.08);
+            --success-color: #f59e0b;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1,
+        h2,
+        .brand-logo {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700 !important;
+            letter-spacing: -0.01em;
+        }
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600 !important;
+            letter-spacing: -0.01em;
+        }
+        p {
+            font-weight: 400 !important;
+            line-height: 1.7;
+        }
+        b,
+        strong,
+        .font-bold {
+            font-weight: 600 !important;
+        }
+        .font-extrabold {
+            font-weight: 700 !important;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--nav-bg);
+            padding: 0 32px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            border-bottom: 1px solid transparent;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .navbar.scrolled {
+            height: 52px;
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: 0 4px 30px var(--shadow-color);
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 8px 16px;
+            margin: 0 2px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 50%;
+        }
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent-color);
+            background: var(--menu-hover-bg);
+        }
+
+        /* ===== DROPDOWN (Desktop) ===== */
+        .dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 58px;
+            left: 0;
+            transform: translateY(8px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+        }
+        .navbar.scrolled .dropdown-menu {
+            top: 52px;
+        }
+        .dropdown-inner {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            min-width: 220px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            padding: 6px 0;
+            display: flex;
+            flex-direction: column;
+            border-radius: 8px;
+        }
+        body.light-mode .dropdown-inner {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 10px 22px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+            text-align: left;
+            white-space: nowrap;
+            border-radius: 0;
+        }
+        .dropdown-item:hover {
+            background: var(--menu-hover-bg);
+            color: var(--accent-color);
+            padding-left: 28px;
+        }
+        [dir="rtl"] .dropdown-item:hover {
+            padding-left: 22px;
+            padding-right: 28px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            padding: 10px 24px;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid transparent;
+            font-family: 'Inter', sans-serif;
+            border-radius: 8px;
+            gap: 8px;
+            text-decoration: none;
+        }
+        .btn-solid {
+            background: var(--accent-color);
+            color: #FFFFFF !important;
+        }
+        .btn-solid:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.35);
+            color: #FFFFFF !important;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+        .btn-outline:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color) !important;
+            background: var(--menu-hover-bg);
+        }
+
+        /* ===== THEME TOGGLE ===== */
+        .theme-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        .theme-btn:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #fff;
+            transform: rotate(20deg);
+        }
+
+        /* ===== MOBILE DRAWER ===== */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.35s ease;
+            backdrop-filter: blur(4px);
+        }
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .fullscreen-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 380px;
+            height: 100dvh;
+            background: var(--drawer-bg);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(100%);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-left: 1px solid var(--border-light);
+        }
+        [dir="rtl"] .fullscreen-menu {
+            right: auto;
+            left: 0;
+            transform: translateX(-100%);
+            border-left: none;
+            border-right: 1px solid var(--border-light);
+        }
+        .fullscreen-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .mobile-link {
+            display: block;
+            width: 100%;
+            padding: 16px 28px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: all 0.25s;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .mobile-link:hover {
+            color: var(--accent-color);
+            padding-left: 36px;
+            background: var(--menu-hover-bg);
+        }
+        [dir="rtl"] .mobile-link:hover {
+            padding-left: 28px;
+            padding-right: 36px;
+        }
+
+        .mobile-menu-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+        }
+        .mobile-menu-btn:hover {
+            color: var(--accent-color);
+            background: var(--menu-hover-bg);
+        }
+
+        /* ===== MOBILE DROPDOWN ===== */
+        .mobile-dropdown {
+            border-bottom: 1px solid var(--border-light);
+        }
+        .mobile-dropdown-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 28px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            user-select: none;
+        }
+        .mobile-dropdown-header:hover {
+            color: var(--accent-color);
+            background: var(--menu-hover-bg);
+        }
+        .mobile-dropdown-header i {
+            transition: transform 0.3s ease;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+        .mobile-dropdown-header.open i {
+            transform: rotate(180deg);
+        }
+        .mobile-dropdown-items {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.3s ease;
+            padding-left: 16px;
+            background: var(--bg-secondary);
+        }
+        .mobile-dropdown-items.open {
+            max-height: 300px;
+            padding: 6px 0 10px 16px;
+        }
+        .mobile-dropdown-link {
+            border-bottom: none !important;
+            padding: 10px 28px !important;
+            font-size: 0.9rem !important;
+            font-family: 'Poppins', sans-serif !important;
+            font-weight: 500 !important;
+            color: var(--text-muted) !important;
+        }
+        .mobile-dropdown-link:hover {
+            color: var(--accent-color) !important;
+            padding-left: 36px !important;
+            background: var(--menu-hover-bg) !important;
+        }
+        [dir="rtl"] .mobile-dropdown-link:hover {
+            padding-left: 28px !important;
+            padding-right: 36px !important;
+        }
+
+        /* ===== BRAND ===== */
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .brand-icon-wrapper {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: rgba(245, 158, 11, 0.12);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        .brand-icon-wrapper i {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+        .brand-icon-wrapper:hover {
+            background: rgba(245, 158, 11, 0.25);
+            border-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+        .brand-logo {
+            font-size: 1.6rem;
+            font-weight: 700 !important;
+            letter-spacing: -0.5px;
+        }
+        .brand-logo span {
+            color: var(--accent-color);
+        }
+
+        /* ===== SECTION HEADERS ===== */
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent-light);
+            color: var(--accent-color);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            border: 1px solid var(--border-light);
+        }
+        .section-title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.15;
+        }
+        .section-title span {
+            color: var(--accent-color);
+        }
+        .section-sub {
+            color: var(--text-muted);
+            max-width: 600px;
+            font-size: 1.1rem;
+        }
+
+        /* ===== FOOTER — ALWAYS DARK ===== */
+        footer {
+            background: #0a1628 !important;
+            border-top: 1px solid #1a3a50 !important;
+            padding-top: 60px;
+            color: #e8f0f8 !important;
+        }
+        footer h4 {
+            color: #e8f0f8 !important;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 18px;
+            letter-spacing: 0.5px;
+        }
+        footer a,
+        footer li,
+        footer span:not(.brand-logo span) {
+            color: #a0b8d0 !important;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        footer a:hover {
+            color: #f59e0b !important;
+        }
+        footer .social-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #1a3a50 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            color: #a0b8d0 !important;
+            background: transparent;
+        }
+        footer .social-circle:hover {
+            background: #f59e0b !important;
+            border-color: #f59e0b !important;
+            color: #ffffff !important;
+            transform: translateY(-3px);
+        }
+        footer .footer-bottom {
+            border-top: 1px solid #1a3a50 !important;
+            padding: 24px 0;
+            margin-top: 40px;
+        }
+        footer .footer-bottom p {
+            color: #6a8aaa !important;
+        }
+        footer .footer-bottom a {
+            color: #6a8aaa !important;
+        }
+        footer .footer-bottom a:hover {
+            color: #f59e0b !important;
+        }
+        footer .brand-link .brand-icon-wrapper {
+            border-color: rgba(245, 158, 11, 0.3) !important;
+            background: rgba(245, 158, 11, 0.12) !important;
+        }
+        footer .brand-link .brand-icon-wrapper i {
+            color: #f59e0b !important;
+        }
+        footer .brand-link .brand-logo {
+            color: #e8f0f8 !important;
+            font-size: 1.6rem;
+            font-weight: 700 !important;
+            letter-spacing: -0.5px;
+        }
+        footer .brand-link .brand-logo span {
+            color: #f59e0b !important;
+        }
+        footer .footer-bottom .text-accent {
+            color: #f59e0b !important;
+        }
+        footer .back-top-link {
+            color: #6a8aaa !important;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            transition: color 0.3s;
+        }
+        footer .back-top-link:hover {
+            color: #f59e0b !important;
+        }
+        footer ul li i.fa-chevron-right {
+            color: #f59e0b !important;
+            font-size: 8px;
+        }
+        footer ul li a:hover {
+            padding-left: 12px !important;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+        @keyframes float-delayed {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .animate-float-delayed {
+            animation: float-delayed 4s ease-in-out 2s infinite;
+        }
+
+        @keyframes subtleZoom {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.06);
+            }
+        }
+        .animate-zoom {
+            animation: subtleZoom 20s infinite alternate ease-in-out;
+        }
+
+        /* ===== HERO OVERLAY — NO ORANGE OPACITY ===== */
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.82) 0%, rgba(10, 22, 40, 0.55) 100%);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 768px) {
+            body {
+                padding-top: 64px;
+            }
+            .navbar {
+                padding: 0 16px;
+                height: 64px;
+            }
+            .navbar.scrolled {
+                height: 58px;
+            }
+            .section-title {
+                font-size: 1.7rem;
+            }
+            .brand-logo {
+                font-size: 1.3rem;
+            }
+            footer .brand-link .brand-logo {
+                font-size: 1.3rem !important;
+            }
+        }
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1.4rem;
+            }
+            .brand-icon-wrapper {
+                width: 34px;
+                height: 34px;
+            }
+            .brand-icon-wrapper i {
+                font-size: 1rem;
+            }
+            .brand-logo {
+                font-size: 1.1rem;
+            }
+            footer .brand-link .brand-logo {
+                font-size: 1.1rem !important;
+            }
+            footer .brand-link .brand-icon-wrapper {
+                width: 34px;
+                height: 34px;
+            }
+            footer .brand-link .brand-icon-wrapper i {
+                font-size: 1rem;
+            }
+        }
+
+        [dir="rtl"] {
+            text-align: right;
+        }
+        [dir="rtl"] .ml-auto {
+            margin-right: auto;
+            margin-left: 0;
+        }
+        [dir="rtl"] .mr-auto {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-dark);
+        }
+
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+        .trust-pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .rtl-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            padding: 5px 12px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        .rtl-toggle:hover {
+            background: var(--accent-color);
+            color: #fff;
+            border-color: var(--accent-color);
+        }
+
+        @keyframes solarBeam {
+            0% {
+                transform: rotate(0deg) scale(1);
+                opacity: 0.15;
+            }
+            50% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: rotate(360deg) scale(1.1);
+                opacity: 0.15;
+            }
+        }
+        .solar-beam {
+            animation: solarBeam 14s linear infinite;
+        }
+
+        /* ===== BENEFIT CARD ===== */
+        .benefit-card {
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            border: 1px solid var(--border-light);
+            background: var(--bg-card);
+        }
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px var(--shadow-color);
+            border-color: var(--accent-color);
+        }
+        .benefit-card .icon-wrap {
+            transition: all 0.3s ease;
+        }
+        .benefit-card:hover .icon-wrap {
+            background: var(--accent-color) !important;
+            color: #fff !important;
+            transform: scale(1.08);
+        }
+
+        /* ===== SERVICE CARD ===== */
+        .service-card {
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            border: 1px solid var(--border-light);
+            background: var(--bg-card);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-color);
+            transform: scaleX(0);
+            transition: transform 0.35s ease;
+            transform-origin: left;
+        }
+        .service-card:hover::after {
+            transform: scaleX(1);
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px var(--shadow-color);
+            border-color: var(--accent-color);
+        }
+
+        /* ===== STEP CIRCLE ===== */
+        .step-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            background: var(--accent-light);
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        .step-card:hover .step-circle {
+            background: var(--accent-color);
+            color: #fff;
+            transform: scale(1.1);
+            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+        }
+        .step-connector {
+            width: 2px;
+            height: 40px;
+            background: var(--border-color);
+            margin: 4px auto;
+        }
+        @media (min-width: 768px) {
+            .step-connector {
+                width: 40px;
+                height: 2px;
+                margin: 0 8px;
+            }
+        }
+
+        /* ===== TESTIMONIAL CARD ===== */
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            transition: all 0.35s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px var(--shadow-color);
+            border-color: var(--accent-color);
+        }
+        .testimonial-card .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            background: var(--accent-light);
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            flex-shrink: 0;
+        }
+        .testimonial-card .stars i {
+            color: #f59e0b;
+            font-size: 0.85rem;
+            margin-right: 1px;
+        }
+
+        /* ===== CALCULATOR PREVIEW ===== */
+        .calc-preview {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            transition: all 0.35s ease;
+        }
+        .calc-preview:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 16px 40px var(--shadow-color);
+        }
+        .calc-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--border-color);
+            outline: none;
+            transition: background 0.2s;
+        }
+        .calc-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+            transition: all 0.2s;
+        }
+        .calc-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.12);
+        }
+        .calc-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+        }
+        .calc-stat {
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+        }
+        .calc-stat:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- NAVBAR -->
+    <!-- ============================================================ -->
+    <nav class="navbar" id="main-nav">
+        <div class="w-full flex items-center justify-between max-w-[1440px] mx-auto">
+            <!-- Brand -->
+            <a href="#home" class="brand-link">
+                <div class="brand-icon-wrapper">
+                    <i class="fas fa-solar-panel"></i>
+                </div>
+                <div class="brand-logo" style="color: var(--text-main) !important;">
+                    <span>Solar</span>Nova
+                </div>
+            </a>
+
+            <!-- ===== DESKTOP NAV ===== -->
+            <div class="hidden xl:flex justify-center items-center flex-1 gap-1">
+                <!-- HOME DROPDOWN -->
+                <div class="dropdown">
+                    <div class="nav-link active">
+                        Home <i class="fas fa-chevron-down text-[8px] ml-1 opacity-50"></i>
+                    </div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-inner">
+                            <a href="index.html" class="dropdown-item" style="color: var(--accent-color);">Home 1</a>
+                            <a href="home-2.html" class="dropdown-item">Home 2</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- About -->
+                <a href="about.html" class="nav-link">About</a>
+                <!-- CALCULATOR -->
+                <a href="calculator.html" class="nav-link">Calculator</a>
+                <!-- process -->
+                <a href="process.html" class="nav-link">process</a>
+                <!-- PROJECTS -->
+                <a href="projects.html" class="nav-link">Projects</a>
+                <!-- FAQ -->
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <!-- CONTACT -->
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+
+            <!-- ===== DESKTOP ACTIONS (Login & Signup as direct links) ===== -->
+            <div class="hidden xl:flex items-center gap-3">
+                <!-- Login Link -->
+                <a href="login.html" class="btn btn-outline !py-1.5 !px-5 !text-[10px]">Login</a>
+                <!-- Signup Link -->
+                <a href="signup.html" class="btn btn-solid !py-1.5 !px-5 !text-[10px]">SignUp</a>
+
+                <div class="w-px h-5 bg-[var(--border-light)] mx-1"></div>
+
+                <button id="theme-toggle-desktop" class="theme-btn" aria-label="Toggle theme">
+                    <i class="fas fa-moon" id="theme-icon-desktop"></i>
+                </button>
+                <button id="rtl-btn" class="rtl-toggle" title="Toggle LTR/RTL">LTR</button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="xl:hidden flex items-center justify-end gap-2">
+                <button id="mobile-btn" class="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================================ -->
+    <!-- MOBILE DRAWER -->
+    <!-- ============================================================ -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="fullscreen-menu" id="fullscreen-menu">
+        <!-- Header -->
+        <div class="w-full px-5 py-5 flex justify-between items-center shrink-0 border-b border-[var(--border-light)]">
+            <a href="#home" class="brand-link" onclick="closeMenu()">
+                <div class="brand-icon-wrapper">
+                    <i class="fas fa-solar-panel"></i>
+                </div>
+                <div class="brand-logo" style="color: var(--text-main) !important;">
+                    <span>Solar</span>Nova
+                </div>
+            </a>
+            <button id="close-menu" class="w-10 h-10 flex items-center justify-center text-2xl text-[var(--text-main)] hover:text-[var(--accent-color)] transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="flex flex-col w-full overflow-y-auto flex-1 py-3">
+            <!-- HOME DROPDOWN -->
+            <div class="mobile-dropdown">
+                <div class="mobile-dropdown-header" id="mobile-home-toggle">
+                    <span>Home</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="mobile-dropdown-items" id="mobile-home-items">
+                    <a href="index.html" class="mobile-link mobile-dropdown-link" onclick="closeMenu()">Home 1</a>
+                    <a href="home-2.html" class="mobile-link mobile-dropdown-link" onclick="closeMenu()">Home 2</a>
+                </div>
+            </div>
+            <!-- About -->
+            <a href="about.html" class="mobile-link" onclick="closeMenu()">About</a>
+            <a href="calculator.html" class="mobile-link" onclick="closeMenu()">Solar Savings Calculator</a>
+            <a href="process.html" class="mobile-link" onclick="closeMenu()">process</a>
+            <a href="projects.html" class="mobile-link" onclick="closeMenu()">Projects Gallery</a>
+            <a href="faq.html" class="mobile-link" onclick="closeMenu()">FAQ</a>
+            <a href="contact.html" class="mobile-link" onclick="closeMenu()">Contact</a>
+
+            <!-- Login & Signup in mobile menu — direct links -->
+            <div class="grid grid-cols-2 gap-3 mt-4 px-5">
+                <a href="login.html" class="btn btn-outline !py-3 w-full text-center" onclick="closeMenu()">Login</a>
+                <a href="signup.html" class="btn btn-solid !py-3 w-full text-center" onclick="closeMenu()">SignUp</a>
+            </div>
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="w-full px-5 py-5 border-t border-[var(--border-light)] flex flex-col gap-4 shrink-0 bg-[var(--bg-secondary)]">
+
+            <div class="flex justify-between items-center w-full">
+                <div class="flex items-center gap-3">
+                    <span class="text-[var(--text-dim)] font-medium text-[10px] uppercase tracking-widest">Theme</span>
+                    <button id="theme-toggle-mobile" class="theme-btn" aria-label="Toggle theme">
+                        <i class="fas fa-moon" id="theme-icon-mobile"></i>
+                    </button>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-[var(--text-dim)] font-medium text-[10px] uppercase tracking-widest">Dir</span>
+                    <button id="rtl-toggle-mobile" class="rtl-toggle" title="Toggle RTL/LTR">
+                        <span class="rtl-text">LTR</span>
+                        <i class="fas fa-arrow-right-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+            <a href="tel:+16001234567" class="btn btn-outline w-full !py-2.5 text-center" onclick="closeMenu()">
+                <i class="fas fa-phone-alt mr-2"></i> Call for Expert Advice
+            </a>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- HERO BANNER – Full Viewport (No Orange Opacity)               -->
+    <!-- ============================================================ -->
+    <section id="home" class="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden border-b border-[var(--border-light)]">
+        <!-- Background Image – Solar Farm / Rooftop -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1920&q=80"
+            alt="Solar Panels on Rooftop"
+            class="w-full h-full object-cover scale-110 animate-zoom">
+
+            <!-- Enhanced overlay – NO ORANGE, pure dark/neutral gradient -->
+            <div class="absolute inset-0 hero-overlay"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-[#0a1628]/85 via-[#0a1628]/50 to-[#0a1628]/75"></div>
+
+            <!-- Subtle solar pattern overlay (kept for texture) -->
+            <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.3&quot;%3E%3Cpath d=&quot;M30 0l30 30-30 30L0 30z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+
+            <!-- Decorative floating elements – subtle, non-orange -->
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-white/5 blur-3xl solar-beam pointer-events-none"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-white/5 blur-3xl solar-beam pointer-events-none" style="animation-delay: 4s;"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+            <!-- Trust Badge (kept orange accent) -->
+            <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-5 py-2.5 rounded-full mb-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#f59e0b] opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-[#f59e0b]"></span>
+                </span>
+                <span class="text-white text-xs font-bold uppercase tracking-[0.2em]">
+                    <i class="fas fa-sun mr-2"></i> Govt. Subsidy Available · Save 70%
+                </span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight text-white mb-5 drop-shadow-lg">
+                Power Your Home<br>
+                <span class="text-[#f59e0b] drop-shadow-md relative">
+                    With Solar Energy
+                    <svg class="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 200 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                       
+                    </svg>
+                </span>
+            </h1>
+
+            <p class="text-white/80 text-lg sm:text-xl max-w-2xl mx-auto mb-8 leading-relaxed drop-shadow-md">
+                Slash your electricity bills by up to 70% with our premium rooftop solar systems.
+                Get up to 40% government subsidy — install now, pay later with 0% EMI.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 w-full">
+                <a href="contact.html" class="group w-full sm:w-auto px-8 py-3.5 sm:px-10 sm:py-4 bg-[#f59e0b] text-white rounded-full font-semibold text-base sm:text-lg hover:scale-105 transition duration-300 shadow-lg shadow-[#f59e0b]/30 hover:shadow-[#f59e0b]/50 block relative overflow-hidden">
+                    <span class="relative z-10 flex items-center justify-center">
+                        <i class="fas fa-calculator mr-2"></i> Calculate Savings
+                        <i class="fas fa-arrow-right ml-2 text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
+                    <span class="absolute inset-0 bg-gradient-to-r from-[#f59e0b] to-[#fdc94f] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                </a>
+                <a href="process.html" class="group w-full sm:w-auto px-8 py-3.5 sm:px-10 sm:py-4 border-2 border-white text-white rounded-full font-semibold text-base sm:text-lg hover:bg-white hover:text-[#0a1628] transition duration-300 shadow-lg block relative overflow-hidden">
+                    <span class="relative z-10 flex items-center justify-center">
+                        <i class="fas fa-play-circle mr-2"></i> process
+                        <i class="fas fa-arrow-right ml-2 text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
+                    <span class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
+                </a>
+            </div>
+
+            <!-- Trust Badges – Enhanced (kept orange accents) -->
+            <div class="mt-12 flex flex-wrap justify-center items-center gap-8 text-white/90">
+                <div class="flex items-center gap-2.5 text-sm font-medium hover:text-white transition-colors duration-200">
+                    <div class="w-9 h-9 rounded-full bg-[#f59e0b]/20 flex items-center justify-center border border-[#f59e0b]/30">
+                        <i class="fas fa-wallet text-[#f59e0b] text-base"></i>
+                    </div>
+                    <span>Save up to 70% on Bills</span>
+                </div>
+                <div class="flex items-center gap-2.5 text-sm font-medium hover:text-white transition-colors duration-200">
+                    <div class="w-9 h-9 rounded-full bg-[#f59e0b]/20 flex items-center justify-center border border-[#f59e0b]/30">
+                        <i class="fas fa-rupee-sign text-[#f59e0b] text-base"></i>
+                    </div>
+                    <span>40% Govt. Subsidy</span>
+                </div>
+                <div class="flex items-center gap-2.5 text-sm font-medium hover:text-white transition-colors duration-200">
+                    <div class="w-9 h-9 rounded-full bg-[#f59e0b]/20 flex items-center justify-center border border-[#f59e0b]/30">
+                        <i class="fas fa-calendar-check text-[#f59e0b] text-base"></i>
+                    </div>
+                    <span>7-Day Installation</span>
+                </div>
+                <div class="flex items-center gap-2.5 text-sm font-medium hover:text-white transition-colors duration-200">
+                    <div class="w-9 h-9 rounded-full bg-[#f59e0b]/20 flex items-center justify-center border border-[#f59e0b]/30">
+                        <i class="fas fa-shield-alt text-[#f59e0b] text-base"></i>
+                    </div>
+                    <span>25-Year Warranty</span>
+                </div>
+            </div>
+
+            <!-- Floating Solar Elements (Decorative) – kept but non-orange -->
+            <div class="absolute -top-10 left-10 animate-float opacity-15 hidden lg:block">
+                <i class="fas fa-solar-panel text-6xl text-white/30"></i>
+            </div>
+            <div class="absolute -bottom-10 right-10 animate-float-delayed opacity-15 hidden lg:block">
+                <i class="fas fa-bolt text-6xl text-white/30"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 1: WHY CHOOSE SOLAR? – BENEFITS                       -->
+    <!-- ============================================================ -->
+    <section class="py-20 px-6 border-b border-[var(--border-light)]" style="background: var(--bg-secondary);">
+        <div class="max-w-[1440px] mx-auto">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="section-tag"><i class="fas fa-sun"></i> Why Solar</span>
+                <h2 class="section-title mt-4">Why Choose <span>Solar Power</span>?</h2>
+                <p class="section-sub mx-auto mt-3">Discover the game-changing benefits of switching to solar energy — for your wallet, your home, and the planet.</p>
+            </div>
+
+            <!-- Benefits Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Benefit 1: Save Money -->
+                <div class="benefit-card rounded-2xl p-6 text-center">
+                    <div class="icon-wrap w-16 h-16 rounded-full bg-[var(--accent-light)] text-[var(--accent-color)] flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-[var(--text-main)] mb-2">Save up to 70%</h3>
+                    <p class="text-[var(--text-muted)] text-sm leading-relaxed">Slash your monthly electricity bills dramatically. Most homeowners see a 50–70% reduction in their energy costs within the first month.</p>
+                    <div class="mt-3 text-xs font-semibold text-[var(--accent-color)]">Avg. savings: ₹8,000/yr</div>
+                </div>
+
+                <!-- Benefit 2: Eco-Friendly -->
+                <div class="benefit-card rounded-2xl p-6 text-center">
+                    <div class="icon-wrap w-16 h-16 rounded-full bg-[var(--accent-light)] text-[var(--accent-color)] flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-[var(--text-main)] mb-2">Eco-Friendly</h3>
+                    <p class="text-[var(--text-muted)] text-sm leading-relaxed">Reduce your carbon footprint by up to 3 tons per year. Every kWh of solar energy replaces fossil fuel generation.</p>
+                    <div class="mt-3 text-xs font-semibold text-[var(--accent-color)]">= planting 50 trees / year</div>
+                </div>
+
+                <!-- Benefit 3: Energy Independence -->
+                <div class="benefit-card rounded-2xl p-6 text-center">
+                    <div class="icon-wrap w-16 h-16 rounded-full bg-[var(--accent-light)] text-[var(--accent-color)] flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-[var(--text-main)] mb-2">Energy Independence</h3>
+                    <p class="text-[var(--text-muted)] text-sm leading-relaxed">Protect yourself from rising energy costs and grid outages. Generate your own clean, reliable power 24/7.</p>
+                    <div class="mt-3 text-xs font-semibold text-[var(--accent-color)]">Backup-ready systems</div>
+                </div>
+
+                <!-- Benefit 4: Low Maintenance -->
+                <div class="benefit-card rounded-2xl p-6 text-center">
+                    <div class="icon-wrap w-16 h-16 rounded-full bg-[var(--accent-light)] text-[var(--accent-color)] flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-[var(--text-main)] mb-2">Low Maintenance</h3>
+                    <p class="text-[var(--text-muted)] text-sm leading-relaxed">Solar panels require minimal upkeep — just occasional cleaning. With a 25-year warranty, they're built to last.</p>
+                    <div class="mt-3 text-xs font-semibold text-[var(--accent-color)]">25-year performance warranty</div>
+                </div>
+            </div>
+
+            <!-- CTA Link -->
+            <div class="text-center mt-10">
+                <a href="calculator.html" class="inline-flex items-center gap-2 text-[var(--accent-color)] font-semibold hover:gap-4 transition-all duration-300">
+                    Calculate Your Savings <i class="fas fa-arrow-right text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 2: OUR SERVICES                                       -->
+    <!-- ============================================================ -->
+    <section class="py-20 px-6 border-b border-[var(--border-light)]" style="background: var(--bg-color);">
+        <div class="max-w-[1440px] mx-auto">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="section-tag"><i class="fas fa-briefcase"></i> Services</span>
+                <h2 class="section-title mt-4">What We <span>Offer</span></h2>
+                <p class="section-sub mx-auto mt-3">From consultation to installation and beyond — we provide end-to-end solar solutions tailored to your needs.</p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service 1: Residential -->
+                <div class="service-card rounded-2xl p-6 text-center">
+                    <div class="text-4xl text-[var(--accent-color)] mb-4"><i class="fas fa-home"></i></div>
+                    <h3 class="text-lg font-bold text-[var(--text-main)] mb-2">Residential Solar</h3>
+                    <p class="text-[var(--text-muted)] text-sm leading-relaxed">Custom rooftop systems for homes of all sizes. From 1kW to 10kW, we design the perfect fit for your energy needs.</p>
+                    <a href="about.html" class="inline-block mt-4 text-sm font-semibold text-[var(--accent-color)] hover:underline">Learn More →</a>
+                </div>
+
+                <!-- Service 2: Commercial -->
+                <div class="service-card rounded-2xl p-6 text-center">
+                    <div class="text-4xl text-[var(--accent-color)] mb-4"><i class="fas fa-building"></i></div>
+                    <h3 class="text-lg font-bold text-[var(--text-main)] mb-2">Commercial Solar</h3>
+                    <p class="text-[var(--text-muted)] text-sm leading-relaxed">Scale your business with large-format solar arrays. Reduce operational costs and meet sustainability goals.</p>
+                    <a href="about.html" class="inline-block mt-4 text-sm font-semibold text-[var(--accent-color)] hover:underline">Learn More →</a>
+                </div>
+
+                <!-- Service 3: Off-Grid Systems -->
+                <div class="service-card rounded-2xl p-6 text-center">
+                    <div class="text-4xl text-[var(--accent-color)] mb-4"><i class="fas fa-battery-full"></i></div>
+                    <h3 class="text-lg font-bold text-[var(--text-main)] mb-2">Off-Grid Solutions</h3>
+                    <p class="text-[var(--text-muted)] text-sm leading-relaxed">Complete off-grid systems with battery storage. Perfect for remote locations, farms, and backup power.</p>
+                    <a href="about.html" class="inline-block mt-4 text-sm font-semibold text-[var(--accent-color)] hover:underline">Learn More →</a>
+                </div>
+
+                <!-- Service 4: Maintenance -->
+                <div class="service-card rounded-2xl p-6 text-center">
+                    <div class="text-4xl text-[var(--accent-color)] mb-4"><i class="fas fa-clipboard-check"></i></div>
+                    <h3 class="text-lg font-bold text-[var(--text-main)] mb-2">Maintenance & Support</h3>
+                    <p class="text-[var(--text-muted)] text-sm leading-relaxed">Keep your system running at peak efficiency with our annual maintenance plans and 24/7 support.</p>
+                    <a href="contact.html" class="inline-block mt-4 text-sm font-semibold text-[var(--accent-color)] hover:underline">Learn More →</a>
+                </div>
+            </div>
+
+            <!-- Bottom CTA -->
+            <div class="text-center mt-10">
+                <a href="contact.html" class="btn btn-solid !px-8 !py-3">Book a Free Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 3: process – STEP-BY-STEP                        -->
+    <!-- ============================================================ -->
+    <section class="py-20 px-6 border-b border-[var(--border-light)]" style="background: var(--bg-secondary);">
+        <div class="max-w-[1440px] mx-auto">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="section-tag"><i class="fas fa-list-ol"></i> Process</span>
+                <h2 class="section-title mt-4">How It <span>Works</span></h2>
+                <p class="section-sub mx-auto mt-3">Getting solar has never been easier. Follow these four simple steps and start generating your own clean energy.</p>
+            </div>
+
+            <!-- Steps -->
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-0 max-w-4xl mx-auto">
+                <!-- Step 1 -->
+                <div class="step-card flex flex-col items-center text-center w-full md:w-auto flex-1">
+                    <div class="step-circle">1</div>
+                    <div class="mt-3">
+                        <h4 class="font-bold text-[var(--text-main)] text-base">Consultation</h4>
+                        <p class="text-[var(--text-muted)] text-sm max-w-[180px] mx-auto">We assess your energy needs and roof space.</p>
+                    </div>
+                </div>
+
+                <!-- Connector -->
+               
+
+                <!-- Step 2 -->
+                <div class="step-card flex flex-col items-center text-center w-full md:w-auto flex-1">
+                    <div class="step-circle">2</div>
+                    <div class="mt-3">
+                        <h4 class="font-bold text-[var(--text-main)] text-base">Design & Quote</h4>
+                        <p class="text-[var(--text-muted)] text-sm max-w-[180px] mx-auto">We design your system and  a transparent quote.</p>
+                    </div>
+                </div>
+
+               
+
+                <!-- Step 3 -->
+                <div class="step-card flex flex-col items-center text-center w-full md:w-auto flex-1">
+                    <div class="step-circle">3</div>
+                    <div class="mt-3">
+                        <h4 class="font-bold text-[var(--text-main)] text-base">Installation</h4>
+                        <p class="text-[var(--text-muted)] text-sm max-w-[180px] mx-auto">Our certified team installs your system in just 7 days.</p>
+                    </div>
+                </div>
+
+               
+
+                <!-- Step 4 -->
+                <div class="step-card flex flex-col items-center text-center w-full md:w-auto flex-1">
+                    <div class="step-circle">4</div>
+                    <div class="mt-3">
+                        <h4 class="font-bold text-[var(--text-main)] text-base">Activation</h4>
+                        <p class="text-[var(--text-muted)] text-sm max-w-[180px] mx-auto">We turn on your system start saving immediately!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Link -->
+            <div class="text-center mt-10">
+                <a href="process.html" class="inline-flex items-center gap-2 text-[var(--accent-color)] font-semibold hover:gap-4 transition-all duration-300">
+                    See Full Process <i class="fas fa-arrow-right text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 4: TESTIMONIALS – CUSTOMER REVIEWS                    -->
+    <!-- ============================================================ -->
+    <section class="py-20 px-6 border-b border-[var(--border-light)]" style="background: var(--bg-color);">
+        <div class="max-w-[1440px] mx-auto">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="section-tag"><i class="fas fa-star"></i> Testimonials</span>
+                <h2 class="section-title mt-4">What Our <span>Customers Say</span></h2>
+                <p class="section-sub mx-auto mt-3">Real stories from homeowners who made the switch to solar with SolarNova.</p>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card rounded-2xl p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="avatar">RK</div>
+                        <div>
+                            <h4 class="font-bold text-[var(--text-main)] text-sm">Rahul Kapoor</h4>
+                            <p class="text-[var(--text-dim)] text-xs">Mumbai, 3kW System</p>
+                        </div>
+                    </div>
+                    <div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-[var(--text-muted)] text-sm leading-relaxed">"My electricity bill dropped from ₹6,500 to ₹1,800. The installation was smooth and the team was professional. Highly recommend SolarNova!"</p>
+                    <div class="mt-3 text-xs text-[var(--accent-color)] font-semibold">Saved 72% on bills</div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card rounded-2xl p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="avatar">SP</div>
+                        <div>
+                            <h4 class="font-bold text-[var(--text-main)] text-sm">Sneha Patel</h4>
+                            <p class="text-[var(--text-dim)] text-xs">Delhi, 5kW System</p>
+                        </div>
+                    </div>
+                    <div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-[var(--text-muted)] text-sm leading-relaxed">"We were skeptical at first, but SolarNova made the entire process transparent and hassle-free. Our home is now completely solar-powered!"</p>
+                    <div class="mt-3 text-xs text-[var(--accent-color)] font-semibold">100% energy offset</div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card rounded-2xl p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="avatar">AM</div>
+                        <div>
+                            <h4 class="font-bold text-[var(--text-main)] text-sm">Amit Malhotra</h4>
+                            <p class="text-[var(--text-dim)] text-xs">Bangalore, 8kW System</p>
+                        </div>
+                    </div>
+                    <div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-[var(--text-muted)] text-sm leading-relaxed">"The 40% government subsidy made it incredibly affordable. SolarNova handled all the paperwork and we got our system installed in 6 days!"</p>
+                    <div class="mt-3 text-xs text-[var(--accent-color)] font-semibold">40% subsidy claimed</div>
+                </div>
+            </div>
+
+            <!-- Rating Summary -->
+            <div class="text-center mt-10 flex flex-wrap justify-center items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl font-bold text-[var(--text-main)]">4.9</span>
+                    <span class="text-[var(--text-muted)] text-sm">/ 5.0</span>
+                    <div class="flex items-center gap-0.5 ml-1">
+                        <i class="fas fa-star text-[#f59e0b] text-sm"></i>
+                        <i class="fas fa-star text-[#f59e0b] text-sm"></i>
+                        <i class="fas fa-star text-[#f59e0b] text-sm"></i>
+                        <i class="fas fa-star text-[#f59e0b] text-sm"></i>
+                        <i class="fas fa-star text-[#f59e0b] text-sm"></i>
+                    </div>
+                </div>
+                <span class="text-[var(--text-dim)] text-sm">Based on 1,200+ verified reviews</span>
+                <a href="projects.html" class="text-[var(--accent-color)] font-semibold text-sm hover:underline">View all reviews →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 5: SAVINGS CALCULATOR PREVIEW                         -->
+    <!-- ============================================================ -->
+    <section class="py-20 px-6 border-b border-[var(--border-light)]" style="background: var(--bg-secondary);">
+        <div class="max-w-[1440px] mx-auto">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="section-tag"><i class="fas fa-calculator"></i> Savings</span>
+                <h2 class="section-title mt-4">How Much Can <span>You Save</span>?</h2>
+                <p class="section-sub mx-auto mt-3">Use our interactive calculator to estimate your solar savings, ROI, and payback period in seconds.</p>
+            </div>
+
+            <!-- Calculator Preview Card -->
+            <div class="calc-preview rounded-2xl p-8 max-w-3xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-6 items-center">
+                    <!-- Left: Slider + Inputs -->
+                    <div class="md:col-span-3 space-y-5">
+                        <div>
+                            <label class="text-sm font-semibold text-[var(--text-main)] flex justify-between">
+                                <span>Monthly Electricity Bill</span>
+                                <span class="text-[var(--accent-color)]">₹6,500</span>
+                            </label>
+                            <input type="range" min="2000" max="25000" value="6500" step="100" class="calc-slider mt-1">
+                            <div class="flex justify-between text-[10px] text-[var(--text-dim)]">
+                                <span>₹2,000</span>
+                                <span>₹25,000</span>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-sm font-semibold text-[var(--text-main)] flex justify-between">
+                                <span>System Size (kW)</span>
+                                <span class="text-[var(--accent-color)]">3.5 kW</span>
+                            </label>
+                            <input type="range" min="1" max="10" value="3.5" step="0.5" class="calc-slider mt-1">
+                            <div class="flex justify-between text-[10px] text-[var(--text-dim)]">
+                                <span>1 kW</span>
+                                <span>10 kW</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Stats -->
+                    <div class="md:col-span-2 space-y-3 bg-[var(--bg-secondary)] rounded-xl p-4">
+                        <div class="calc-stat">
+                            <div class="text-[var(--text-dim)] text-xs uppercase tracking-wider">Monthly Savings</div>
+                            <div class="text-2xl font-bold text-[var(--text-main)]">₹4,550</div>
+                        </div>
+                        <div class="calc-stat">
+                            <div class="text-[var(--text-dim)] text-xs uppercase tracking-wider">Annual Savings</div>
+                            <div class="text-2xl font-bold text-[var(--accent-color)]">₹54,600</div>
+                        </div>
+                        <div>
+                            <div class="text-[var(--text-dim)] text-xs uppercase tracking-wider">Payback Period</div>
+                            <div class="text-xl font-bold text-[var(--text-main)]">4.2 Years</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="text-center mt-6 pt-4 border-t border-[var(--border-light)]">
+                    <a href="calculator.html" class="btn btn-solid !px-10 !py-3 text-sm">
+                        <i class="fas fa-calculator mr-2"></i> Use Full Calculator
+                    </a>
+                    <p class="text-[var(--text-dim)] text-xs mt-2">* Estimates based on average sun hours and current tariffs</p>
+                </div>
+            </div>
+
+            <!-- Quick Stats Row -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mt-8 text-center">
+                <div class="bg-[var(--bg-card)] rounded-xl p-4 border border-[var(--border-light)]">
+                    <div class="text-2xl font-bold text-[var(--accent-color)]">70%</div>
+                    <div class="text-[var(--text-dim)] text-xs uppercase tracking-wider">Avg. Bill Reduction</div>
+                </div>
+                <div class="bg-[var(--bg-card)] rounded-xl p-4 border border-[var(--border-light)]">
+                    <div class="text-2xl font-bold text-[var(--accent-color)]">₹54.6K</div>
+                    <div class="text-[var(--text-dim)] text-xs uppercase tracking-wider">Yearly Savings</div>
+                </div>
+                <div class="bg-[var(--bg-card)] rounded-xl p-4 border border-[var(--border-light)]">
+                    <div class="text-2xl font-bold text-[var(--accent-color)]">4.2 Yrs</div>
+                    <div class="text-[var(--text-dim)] text-xs uppercase tracking-wider">Payback Period</div>
+                </div>
+                <div class="bg-[var(--bg-card)] rounded-xl p-4 border border-[var(--border-light)]">
+                    <div class="text-2xl font-bold text-[var(--accent-color)]">₹2.3L</div>
+                    <div class="text-[var(--text-dim)] text-xs uppercase tracking-wider">Total Savings (25 Yrs)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER – ALWAYS DARK                                          -->
+    <!-- ============================================================ -->
+    <footer>
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                <!-- Brand -->
+                <div>
+                    <a href="#home" class="brand-link inline-flex">
+                        <div class="brand-icon-wrapper">
+                            <i class="fas fa-solar-panel"></i>
+                        </div>
+                        <div class="brand-logo" style="color: #e8f0f8 !important; font-size: 1.6rem; font-weight: 700 !important; letter-spacing: -0.5px;">
+                            <span style="color: #f59e0b !important;">Solar</span><span style="color: #e8f0f8 !important;">Nova</span>
+                        </div>
+                    </a>
+                    <p class="text-[#a0b8d0] text-sm leading-relaxed mt-4">Empowering homes and businesses with clean, renewable solar energy. Save money, reduce carbon footprint, and embrace a sustainable future.</p>
+                    <div class="flex gap-3 mt-5">
+                        <a href="#" class="social-circle"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-linkedin-in"></i></a>
+                       
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="#home" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> Home</a></li>
+                        <li><a href="about.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> About</a></li>
+                        <li><a href="calculator.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> Savings Calculator</a></li>
+                        <li><a href="process.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> process</a></li>
+                        <li><a href="projects.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> Projects Gallery</a></li>
+                        <li><a href="faq.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> FAQ</a></li>
+                        <li><a href="contact.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- About by Capacity -->
+                <div>
+                    <h4>Solar Systems</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="about.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> 1kW – 3kW (Homes)</a></li>
+                        <li><a href="about.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> 3kW – 5kW (Villas)</a></li>
+                        <li><a href="about.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> 5kW – 10kW (Shops)</a></li>
+                        <li><a href="about.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> 10kW+ (Offices)</a></li>
+                        <li><a href="about.html" class="hover:pl-2 transition-all inline-flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-[#f59e0b]"></i> Solar Accessories</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4>Get in Touch</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-[#f59e0b] mt-0.5"></i>
+                            <span class="text-[#a0b8d0]">45 Solar Park, Green Valley, New Delhi 110001</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-phone text-[#f59e0b] mt-0.5"></i>
+                            <span class="text-[#a0b8d0]"><a href="tel:+16001234567" class="hover:text-[#f59e0b]">+1 600 123 4567</a></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-envelope text-[#f59e0b] mt-0.5"></i>
+                            <span class="text-[#a0b8d0]"><a href="mailto:info@solarnova.com" class="hover:text-[#f59e0b]">info@solarnova.com</a></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-clock text-[#f59e0b] mt-0.5"></i>
+                            <span class="text-[#a0b8d0]">Mon–Sat: 8:00 AM – 8:00 PM</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-headset text-[#f59e0b] mt-0.5"></i>
+                            <span class="text-[#a0b8d0]">24/7 Emergency Support</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-[#6a8aaa]">&copy; 2026 <span class="text-[#f59e0b] font-semibold">SolarNova</span> Renewables. All rights reserved.</p>
+                <div class="flex flex-wrap gap-6 text-sm">
+                    <a href="#" class="text-[#6a8aaa] hover:text-[#f59e0b] transition-colors">Terms of Service</a>
+                    <a href="#" class="text-[#6a8aaa] hover:text-[#f59e0b] transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-[#6a8aaa] hover:text-[#f59e0b] transition-colors">Refund Policy</a>
+                    <a href="#" class="text-[#6a8aaa] hover:text-[#f59e0b] transition-colors">Cookie Policy</a>
+                    <a href="#" class="text-[#6a8aaa] hover:text-[#f59e0b] transition-colors">Sitemap</a>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="#home" class="back-top-link inline-flex items-center gap-2 text-[#6a8aaa] text-xs font-semibold uppercase tracking-widest hover:text-[#f59e0b] transition-colors">
+                    <i class="fas fa-arrow-up"></i> Back to Top
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================================================ -->
+    <script>
+        // ===== NAVBAR SCROLL =====
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 30) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        // ===== MOBILE DRAWER =====
+        const mobileBtn = document.getElementById('mobile-btn');
+        const fullscreenMenu = document.getElementById('fullscreen-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const drawerOverlay = document.getElementById('drawer-overlay');
+
+        function toggleMenu() {
+            fullscreenMenu.classList.toggle('active');
+            drawerOverlay.classList.toggle('active');
+            document.body.style.overflow = fullscreenMenu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        function closeMenu() {
+            fullscreenMenu.classList.remove('active');
+            drawerOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        mobileBtn.onclick = toggleMenu;
+        closeMenuBtn.onclick = closeMenu;
+        drawerOverlay.onclick = closeMenu;
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1280) closeMenu();
+        });
+
+        // ===== THEME TOGGLE =====
+        const themeDesk = document.getElementById('theme-toggle-desktop');
+        const themeMob = document.getElementById('theme-toggle-mobile');
+        const iconDesk = document.getElementById('theme-icon-desktop');
+        const iconMob = document.getElementById('theme-icon-mobile');
+
+        const savedTheme = localStorage.getItem('solarnova-theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = savedTheme ? savedTheme === 'dark' : systemDark;
+
+        function setTheme(dark) {
+            if (dark) {
+                document.body.classList.add('dark-mode');
+                if (iconDesk) iconDesk.className = 'fas fa-sun';
+                if (iconMob) iconMob.className = 'fas fa-sun';
+                localStorage.setItem('solarnova-theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                if (iconDesk) iconDesk.className = 'fas fa-moon';
+                if (iconMob) iconMob.className = 'fas fa-moon';
+                localStorage.setItem('solarnova-theme', 'light');
+            }
+        }
+
+        setTheme(isDark);
+
+        function toggleTheme() {
+            const currentlyDark = document.body.classList.contains('dark-mode');
+            setTheme(!currentlyDark);
+        }
+
+        if (themeDesk) themeDesk.addEventListener('click', toggleTheme);
+        if (themeMob) themeMob.addEventListener('click', toggleTheme);
+
+        // ===== RTL TOGGLE =====
+        const rtlBtn = document.getElementById('rtl-btn');
+        const rtlMob = document.getElementById('rtl-toggle-mobile');
+        const rtlTexts = document.querySelectorAll('.rtl-text');
+
+        function toggleRTL() {
+            const html = document.documentElement;
+            if (html.dir === 'rtl') {
+                html.dir = 'ltr';
+                rtlTexts.forEach(el => el.textContent = 'LTR');
+                if (rtlBtn) rtlBtn.innerHTML = 'LTR <i class="fas fa-arrow-right-arrow-left"></i>';
+            } else {
+                html.dir = 'rtl';
+                rtlTexts.forEach(el => el.textContent = 'RTL');
+                if (rtlBtn) rtlBtn.innerHTML = 'RTL <i class="fas fa-arrow-right-arrow-left"></i>';
+            }
+        }
+
+        if (rtlBtn) rtlBtn.addEventListener('click', toggleRTL);
+        if (rtlMob) rtlMob.addEventListener('click', toggleRTL);
+
+        // ===== MOBILE DROPDOWN TOGGLES =====
+        (function() {
+            const homeToggle = document.getElementById('mobile-home-toggle');
+            const homeItems = document.getElementById('mobile-home-items');
+            if (homeToggle && homeItems) {
+                homeToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.classList.toggle('open');
+                    homeItems.classList.toggle('open');
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
