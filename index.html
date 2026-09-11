@@ -1012,9 +1012,7 @@
             <!-- ===== DESKTOP ACTIONS (Login & Signup as direct links) ===== -->
             <div class="hidden xl:flex items-center gap-3">
                 <!-- Login Link -->
-                <a href="login.html" class="btn btn-outline !py-1.5 !px-5 !text-[10px]">Login</a>
-                <!-- Signup Link -->
-                <a href="signup.html" class="btn btn-solid !py-1.5 !px-5 !text-[10px]">SignUp</a>
+                <a href="login.html" class="btn btn-solid !py-1.5 !px-5 !text-[10px]">Login</a>
 
                 <div class="w-px h-5 bg-[var(--border-light)] mx-1"></div>
 
@@ -1074,10 +1072,9 @@
             <a href="faq.html" class="mobile-link" onclick="closeMenu()">FAQ</a>
             <a href="contact.html" class="mobile-link" onclick="closeMenu()">Contact</a>
 
-            <!-- Login & Signup in mobile menu — direct links -->
-            <div class="grid grid-cols-2 gap-3 mt-4 px-5">
-                <a href="login.html" class="btn btn-outline !py-3 w-full text-center" onclick="closeMenu()">Login</a>
-                <a href="signup.html" class="btn btn-solid !py-3 w-full text-center" onclick="closeMenu()">SignUp</a>
+            <!-- Login in mobile menu — direct links -->
+            <div class="grid grid-cols-1 gap-3 mt-4 px-5">
+                <a href="login.html" class="btn btn-solid !py-3 w-full text-center" onclick="closeMenu()">Login</a>
             </div>
         </div>
 
@@ -1227,7 +1224,7 @@
             <!-- Benefits Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Benefit 1: Save Money -->
-                <div class="benefit-card rounded-2xl p-6 text-center">
+                <div class="benefit-card h-full flex flex-col justify-between rounded-2xl p-6 text-center">
                     <div class="icon-wrap w-16 h-16 rounded-full bg-[var(--accent-light)] text-[var(--accent-color)] flex items-center justify-center mx-auto mb-4 text-2xl">
                         <i class="fas fa-coins"></i>
                     </div>
@@ -1237,7 +1234,7 @@
                 </div>
 
                 <!-- Benefit 2: Eco-Friendly -->
-                <div class="benefit-card rounded-2xl p-6 text-center">
+                <div class="benefit-card h-full flex flex-col justify-between rounded-2xl p-6 text-center">
                     <div class="icon-wrap w-16 h-16 rounded-full bg-[var(--accent-light)] text-[var(--accent-color)] flex items-center justify-center mx-auto mb-4 text-2xl">
                         <i class="fas fa-leaf"></i>
                     </div>
@@ -1247,7 +1244,7 @@
                 </div>
 
                 <!-- Benefit 3: Energy Independence -->
-                <div class="benefit-card rounded-2xl p-6 text-center">
+                <div class="benefit-card h-full flex flex-col justify-between rounded-2xl p-6 text-center">
                     <div class="icon-wrap w-16 h-16 rounded-full bg-[var(--accent-light)] text-[var(--accent-color)] flex items-center justify-center mx-auto mb-4 text-2xl">
                         <i class="fas fa-bolt"></i>
                     </div>
@@ -1257,7 +1254,7 @@
                 </div>
 
                 <!-- Benefit 4: Low Maintenance -->
-                <div class="benefit-card rounded-2xl p-6 text-center">
+                <div class="benefit-card h-full flex flex-col justify-between rounded-2xl p-6 text-center">
                     <div class="icon-wrap w-16 h-16 rounded-full bg-[var(--accent-light)] text-[var(--accent-color)] flex items-center justify-center mx-auto mb-4 text-2xl">
                         <i class="fas fa-tools"></i>
                     </div>
@@ -1414,7 +1411,7 @@
                 <!-- Testimonial 1 -->
                 <div class="testimonial-card rounded-2xl p-6">
                     <div class="flex items-center gap-4 mb-3">
-                        <div class="avatar">RK</div>
+                        <img src="https://i.pravatar.cc/150?img=11" class="avatar object-cover" alt="RK">
                         <div>
                             <h4 class="font-bold text-[var(--text-main)] text-sm">Rahul Kapoor</h4>
                             <p class="text-[var(--text-dim)] text-xs">Mumbai, 3kW System</p>
@@ -1428,7 +1425,7 @@
                 <!-- Testimonial 2 -->
                 <div class="testimonial-card rounded-2xl p-6">
                     <div class="flex items-center gap-4 mb-3">
-                        <div class="avatar">SP</div>
+                        <img src="pic/team2.webp" class="avatar object-cover" alt="SP">
                         <div>
                             <h4 class="font-bold text-[var(--text-main)] text-sm">Sneha Patel</h4>
                             <p class="text-[var(--text-dim)] text-xs">Delhi, 5kW System</p>
@@ -1442,7 +1439,7 @@
                 <!-- Testimonial 3 -->
                 <div class="testimonial-card rounded-2xl p-6">
                     <div class="flex items-center gap-4 mb-3">
-                        <div class="avatar">AM</div>
+                        <img src="https://i.pravatar.cc/150?img=8" class="avatar object-cover" alt="AM">
                         <div>
                             <h4 class="font-bold text-[var(--text-main)] text-sm">Amit Malhotra</h4>
                             <p class="text-[var(--text-dim)] text-xs">Bangalore, 8kW System</p>

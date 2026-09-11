@@ -893,11 +893,12 @@
 <body>
 
     <!-- ============================================================ -->
-    <!-- NAVBAR – MATCHING INDEX.HTML                                 -->
+    <!-- NAVBAR -->
     <!-- ============================================================ -->
     <nav class="navbar" id="main-nav">
         <div class="w-full flex items-center justify-between max-w-[1440px] mx-auto">
-            <a href="index.html" class="brand-link">
+            <!-- Brand -->
+            <a href="#home" class="brand-link">
                 <div class="brand-icon-wrapper">
                     <i class="fas fa-solar-panel"></i>
                 </div>
@@ -906,30 +907,38 @@
                 </div>
             </a>
 
+            <!-- ===== DESKTOP NAV ===== -->
             <div class="hidden xl:flex justify-center items-center flex-1 gap-1">
+                <!-- HOME DROPDOWN -->
                 <div class="dropdown">
-                    <div class="nav-link">
+                    <div class="nav-link active">
                         Home <i class="fas fa-chevron-down text-[8px] ml-1 opacity-50"></i>
                     </div>
                     <div class="dropdown-menu">
                         <div class="dropdown-inner">
-                            <a href="index.html" class="dropdown-item">Home 1</a>
+                            <a href="index.html" class="dropdown-item" style="color: var(--accent-color);">Home 1</a>
                             <a href="home-2.html" class="dropdown-item">Home 2</a>
                         </div>
                     </div>
                 </div>
+                <!-- About -->
                 <a href="about.html" class="nav-link">About</a>
+                <!-- CALCULATOR -->
                 <a href="calculator.html" class="nav-link">Calculator</a>
+                <!-- process -->
                 <a href="process.html" class="nav-link">process</a>
+                <!-- PROJECTS -->
                 <a href="projects.html" class="nav-link">Projects</a>
+                <!-- FAQ -->
                 <a href="faq.html" class="nav-link">FAQ</a>
-                <a href="contact.html" class="nav-link active">Contact</a>
+                <!-- CONTACT -->
+                <a href="contact.html" class="nav-link">Contact</a>
             </div>
 
             <!-- ===== DESKTOP ACTIONS (Login & Signup as direct links) ===== -->
             <div class="hidden xl:flex items-center gap-3">
-                <a href="login.html" class="btn btn-outline !py-1.5 !px-5 !text-[10px]">Login</a>
-                <a href="signup.html" class="btn btn-solid !py-1.5 !px-5 !text-[10px]">SignUp</a>
+                <!-- Login Link -->
+                <a href="login.html" class="btn btn-solid !py-1.5 !px-5 !text-[10px]">Login</a>
 
                 <div class="w-px h-5 bg-[var(--border-light)] mx-1"></div>
 
@@ -939,6 +948,7 @@
                 <button id="rtl-btn" class="rtl-toggle" title="Toggle LTR/RTL">LTR</button>
             </div>
 
+            <!-- Mobile Menu Button -->
             <div class="xl:hidden flex items-center justify-end gap-2">
                 <button id="mobile-btn" class="mobile-menu-btn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
@@ -948,20 +958,28 @@
     </nav>
 
     <!-- ============================================================ -->
-    <!-- MOBILE DRAWER – MATCHING INDEX.HTML                          -->
+    <!-- MOBILE DRAWER -->
     <!-- ============================================================ -->
     <div class="drawer-overlay" id="drawer-overlay"></div>
     <div class="fullscreen-menu" id="fullscreen-menu">
+        <!-- Header -->
         <div class="w-full px-5 py-5 flex justify-between items-center shrink-0 border-b border-[var(--border-light)]">
-            <a href="index.html" class="brand-link" onclick="closeMenu()">
-                <div class="brand-icon-wrapper"><i class="fas fa-solar-panel"></i></div>
-                <div class="brand-logo" style="color: var(--text-main) !important;"><span>Solar</span>Nova</div>
+            <a href="#home" class="brand-link" onclick="closeMenu()">
+                <div class="brand-icon-wrapper">
+                    <i class="fas fa-solar-panel"></i>
+                </div>
+                <div class="brand-logo" style="color: var(--text-main) !important;">
+                    <span>Solar</span>Nova
+                </div>
             </a>
             <button id="close-menu" class="w-10 h-10 flex items-center justify-center text-2xl text-[var(--text-main)] hover:text-[var(--accent-color)] transition-colors">
                 <i class="fas fa-times"></i>
             </button>
         </div>
+
+        <!-- Navigation Links -->
         <div class="flex flex-col w-full overflow-y-auto flex-1 py-3">
+            <!-- HOME DROPDOWN -->
             <div class="mobile-dropdown">
                 <div class="mobile-dropdown-header" id="mobile-home-toggle">
                     <span>Home</span>
@@ -972,20 +990,23 @@
                     <a href="home-2.html" class="mobile-link mobile-dropdown-link" onclick="closeMenu()">Home 2</a>
                 </div>
             </div>
+            <!-- About -->
             <a href="about.html" class="mobile-link" onclick="closeMenu()">About</a>
             <a href="calculator.html" class="mobile-link" onclick="closeMenu()">Solar Savings Calculator</a>
             <a href="process.html" class="mobile-link" onclick="closeMenu()">process</a>
             <a href="projects.html" class="mobile-link" onclick="closeMenu()">Projects Gallery</a>
             <a href="faq.html" class="mobile-link" onclick="closeMenu()">FAQ</a>
-            <a href="contact.html" class="mobile-link" onclick="closeMenu()" style="color: var(--accent-color);">Contact</a>
+            <a href="contact.html" class="mobile-link" onclick="closeMenu()">Contact</a>
 
-            <!-- Login & Signup in mobile menu — direct links (same as index.html) -->
-            <div class="grid grid-cols-2 gap-3 mt-4 px-5">
-                <a href="login.html" class="btn btn-outline !py-3 w-full text-center" onclick="closeMenu()">Login</a>
-                <a href="signup.html" class="btn btn-solid !py-3 w-full text-center" onclick="closeMenu()">SignUp</a>
+            <!-- Login in mobile menu — direct links -->
+            <div class="grid grid-cols-1 gap-3 mt-4 px-5">
+                <a href="login.html" class="btn btn-solid !py-3 w-full text-center" onclick="closeMenu()">Login</a>
             </div>
         </div>
+
+        <!-- Footer Actions -->
         <div class="w-full px-5 py-5 border-t border-[var(--border-light)] flex flex-col gap-4 shrink-0 bg-[var(--bg-secondary)]">
+
             <div class="flex justify-between items-center w-full">
                 <div class="flex items-center gap-3">
                     <span class="text-[var(--text-dim)] font-medium text-[10px] uppercase tracking-widest">Theme</span>
@@ -1022,15 +1043,7 @@
         </div>
 
         <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
-            <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-5 py-2.5 rounded-full mb-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
-                <span class="relative flex h-3 w-3">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#f59e0b] opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-3 w-3 bg-[#f59e0b]"></span>
-                </span>
-                <span class="text-white text-xs font-bold uppercase tracking-[0.2em]">
-                    <i class="fas fa-phone mr-2"></i> Get in Touch · We're Here to Help
-                </span>
-            </div>
+            
 
             <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-tight text-white mb-4 drop-shadow-lg">
                 Let's Talk<br>
@@ -1058,7 +1071,7 @@
 
             <div class="mt-10 flex flex-wrap justify-center items-center gap-8 text-white/80">
                 <div class="flex items-center gap-2.5 text-sm">
-                    <i class="fas fa-clock text-[#f59e0b]"></i>
+                    <i class="fas fa-calendar-alt text-[#f59e0b]"></i>
                     <span>Mon–Sat: 8AM – 8PM</span>
                 </div>
                 <div class="flex items-center gap-2.5 text-sm">
@@ -1091,7 +1104,7 @@
                     <p>45 Solar Park, Green Valley,<br>New Delhi 110001, India</p>
                 </div>
                 <div class="contact-info-card">
-                    <div class="icon-circle"><i class="fas fa-phone-alt"></i></div>
+                    <div class="icon-circle"><i class="fas fa-phone mr-2"></i></i></div>
                     <h4>Call Us</h4>
                     <p><strong>+1 600 123 4567</strong><br>Mon–Sat: 8AM – 8PM</p>
                 </div>
@@ -1187,7 +1200,7 @@
                                 <span class="text-[var(--text-muted)]"><a href="mailto:info@solarnova.com" class="hover:text-[var(--accent-color)]">info@solarnova.com</a></span>
                             </div>
                             <div class="flex items-start gap-3">
-                                <i class="fas fa-clock text-[var(--accent-color)] mt-0.5"></i>
+                                <i class="fas fa-calendar-alt text-[var(--accent-color)] mt-0.5"></i>
                                 <span class="text-[var(--text-muted)]">Mon–Sat: 8:00 AM – 8:00 PM · Closed Sunday</span>
                             </div>
                         </div>
@@ -1423,7 +1436,7 @@
                             <span class="text-[#a0b8d0]"><a href="mailto:info@solarnova.com" class="hover:text-[#f59e0b]">info@solarnova.com</a></span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <i class="fas fa-clock text-[#f59e0b] mt-0.5"></i>
+                            <i class="fas fa-calendar-alt text-[#f59e0b] mt-0.5"></i>
                             <span class="text-[#a0b8d0]">Mon–Sat: 8:00 AM – 8:00 PM</span>
                         </li>
                         <li class="flex items-start gap-3">
